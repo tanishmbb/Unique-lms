@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>SMARTLEARN - Professional Online Learning</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="Premium online courses for professional development">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --success-color: #4bb543;
+            --warning-color: #f8961e;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .navbar {
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80') no-repeat center center;
+            background-size: cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .search-box {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 25px;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .section-title {
+            margin-bottom: 50px;
+        }
+        
+        .section-title h6 {
+            color: var(--primary-color);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .stats-card {
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .course-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border: none;
+            height: 100%;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .course-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .course-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--warning-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        
+        .discount-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .discount-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80') no-repeat center center;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .discount-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            margin-right: 15px;
+        }
+        
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 0;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .swiper-button-next, .swiper-button-prev {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(67, 97, 238, 0.1) !important;
+            color: var(--primary-color) !important;
+        }
+        
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 0;
+            }
+            
+            .section-padding {
+                padding: 50px 0;
+            }
+            
+            .stats-card {
+                margin-bottom: 20px;
+            }
+            
+            .feature-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>SmartLearn
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Courses</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Course Detail</a></li>
+                            <li><a class="dropdown-item" href="#features">Our Features</a></li>
+                            <li><a class="dropdown-item" href="#">Instructors</a></li>
+                            <li><a class="dropdown-item" href="#">Testimonials</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="ms-lg-3 mt-3 mt-lg-0">
+                    <a href="login.html" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Hero Section Start -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="display-4 fw-bold mb-4">Learn Without Limits</h1>
+                <p class="lead mb-5">Start, switch, or advance your career with our professional online courses</p>
+                
+                <div class="search-box">
+                    <div class="input-group">
+                        <select class="form-select" style="max-width: 150px;">
+                            <option selected>All Courses</option>
+                            <option>Web Development</option>
+                            <option>Data Science</option>
+                            <option>Mobile Apps</option>
+                            <option>Programming</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder="What do you want to learn?">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search me-1"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- About Section Start -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="section-title text-center">
+                <h6 class="text-uppercase">About Us</h6>
+                <h2 class="mb-4">First Choice For Online Education Anywhere</h2>
+                <p class="lead mx-auto" style="max-width: 700px;">We provide the best online learning experience with industry experts, practical projects, and career support to help you achieve your goals.</p>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-card bg-primary">
+                        <h3 class="counter" data-target="123">0</h3>
+                        <p class="mb-0">Available Subjects</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-card bg-success">
+                        <h3 class="counter" data-target="1234">0</h3>
+                        <p class="mb-0">Online Courses</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-card bg-warning">
+                        <h3 class="counter" data-target="123">0</h3>
+                        <p class="mb-0">Skilled Instructors</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-card bg-secondary">
+                        <h3 class="counter" data-target="1234">0</h3>
+                        <p class="mb-0">Happy Students</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section End -->
+
+    <!-- Features Section Start -->
+    <section id="features" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-title text-center">
+                <h6 class="text-uppercase">Why Choose Us</h6>
+                <h2 class="mb-4">Why You Should Start Learning With Us?</h2>
+                <p class="lead mx-auto" style="max-width: 700px;">We provide the best online learning experience with industry experts, practical projects, and career support.</p>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon bg-primary">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4>Skilled Instructors</h4>
+                        <p>Learn from industry experts with years of practical experience in their fields.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon bg-success">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4>International Certificate</h4>
+                        <p>Get recognized certificates that you can share with your professional network.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon bg-warning">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h4>Online Classes</h4>
+                        <p>Access your courses anytime, anywhere with our flexible online platform.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon bg-info">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>24/7 Support</h4>
+                        <p>Our dedicated support team is always ready to help you with any questions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon bg-danger">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h4>Career Guidance</h4>
+                        <p>Get career advice and job search support from our career specialists.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon bg-secondary">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h4>Practical Projects</h4>
+                        <p>Work on real-world projects to build your portfolio and gain experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Features Section End -->
+
+    <!-- Courses Section Start -->
+    <section id="courses" class="section-padding">
+        <div class="container">
+            <div class="section-title text-center">
+                <h6 class="text-uppercase">Our Courses</h6>
+                <h2 class="mb-4">Checkout New Releases Of Our Courses</h2>
+                <p class="lead mx-auto" style="max-width: 700px;">Browse our most popular courses and start your learning journey today.</p>
+            </div>
+            
+            <div class="mt-5 position-relative">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- Course 1 -->
+                        <div class="swiper-slide">
+                            <div class="card course-card h-100">
+                                <div class="card-body text-center p-4">
+                                    <div class="course-icon">
+                                        <i class="fab fa-html5"></i>
+                                    </div>
+                                    <span class="course-badge">Popular</span>
+                                    <h5 class="card-title">Web Development</h5>
+                                    <p class="card-text">Master HTML, CSS, JavaScript and modern frameworks</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <div>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <span>4.8 (256)</span>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-primary">Enroll Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 2 -->
+                        <div class="swiper-slide">
+                            <div class="card course-card h-100">
+                                <div class="card-body text-center p-4">
+                                    <div class="course-icon">
+                                        <i class="fab fa-python"></i>
+                                    </div>
+                                    <h5 class="card-title">Python Programming</h5>
+                                    <p class="card-text">From basics to advanced Python concepts and applications</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <div>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <span>4.7 (189)</span>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-primary">Enroll Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 3 -->
+                        <div class="swiper-slide">
+                            <div class="card course-card h-100">
+                                <div class="card-body text-center p-4">
+                                    <div class="course-icon">
+                                        <i class="fab fa-react"></i>
+                                    </div>
+                                    <span class="course-badge">New</span>
+                                    <h5 class="card-title">React JS</h5>
+                                    <p class="card-text">Build modern web applications with React framework</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <div>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <span>4.9 (312)</span>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-primary">Enroll Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 4 -->
+                        <div class="swiper-slide">
+                            <div class="card course-card h-100">
+                                <div class="card-body text-center p-4">
+                                    <div class="course-icon">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <h5 class="card-title">Data Science</h5>
+                                    <p class="card-text">Learn data analysis, visualization and machine learning</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <div>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <span>4.6 (178)</span>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-primary">Enroll Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 5 -->
+                        <div class="swiper-slide">
+                            <div class="card course-card h-100">
+                                <div class="card-body text-center p-4">
+                                    <div class="course-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <h5 class="card-title">Mobile Development</h5>
+                                    <p class="card-text">Build cross-platform mobile apps with Flutter</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <div>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <span>4.5 (142)</span>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-primary">Enroll Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Courses Section End -->
+
+    <!-- Discount Section Start -->
+    <section class="discount-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="discount-form" style="color: black;">
+                        <h2 class="text-center mb-4">15% Off For New Students</h2>
+                        <p class="text-center mb-5">Sign up today and get instant access to all courses with a special discount</p>
+                        
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Your Name">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control form-control-lg" placeholder="Your Email">
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-select form-select-lg">
+                                        <option selected>Select A Course</option>
+                                        <option>Web Development</option>
+                                        <option>Python Programming</option>
+                                        <option>React JS</option>
+                                        <option>Data Science</option>
+                                        <option>Mobile Development</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary btn-lg w-100" type="submit">Sign Up Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Discount Section End -->
+
+    <!-- Contact Section Start -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-title text-center">
+                <h6 class="text-uppercase">Contact Us</h6>
+                <h2 class="mb-4">Get In Touch</h2>
+                <p class="lead mx-auto" style="max-width: 700px;">Have questions? We're here to help. Contact our team for any inquiries.</p>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="contact-info">
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="contact-icon bg-primary">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Our Location</h4>
+                                <p class="mb-0">123 Education Street, Learning City, 101010</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="contact-icon bg-success">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p class="mb-0">+1 234 567 8900</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <div class="contact-icon bg-warning">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p class="mb-0">info@smartlearn.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+                        <h3 class="mb-4">Send Us A Message</h3>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control form-control-lg" placeholder="Your Email" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Subject" required>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control form-control-lg" rows="5" placeholder="Your Message" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary btn-lg" type="submit">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+
+    <!-- Footer Start -->
+    <footer>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h3 class="text-white mb-4">
+                        <i class="fas fa-graduation-cap me-2"></i>SmartLearn
+                    </h3>
+                    <p>Empowering individuals through accessible, high-quality online education to transform careers and lives.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Home</a></li>
+                        <li class="mb-2"><a href="#about">About Us</a></li>
+                        <li class="mb-2"><a href="#courses">Courses</a></li>
+                        <li class="mb-2"><a href="#features">Features</a></li>
+                        <li class="mb-2"><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h4 class="text-white mb-4">Popular Courses</h4>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Web Development</a></li>
+                        <li class="mb-2"><a href="#">Python Programming</a></li>
+                        <li class="mb-2"><a href="#">Data Science</a></li>
+                        <li class="mb-2"><a href="#">Mobile Development</a></li>
+                        <li class="mb-2"><a href="#">UI/UX Design</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h4 class="text-white mb-4">Newsletter</h4>
+                    <p>Subscribe to our newsletter for the latest updates and course offerings.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4" style="border-color: rgba(255, 255, 255, 0.1);">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2023 SmartLearn. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+                        <li class="list-inline-item"><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    
+    <!-- Counter Up -->
+    <script>
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+        
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if(count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            
+            updateCount();
+        });
+        
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                576: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                992: {
+                    slidesPerView: 4,
+                }
+            }
+        });
+        
+        // Back to top button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('.back-to-top').fadeIn('slow');
+            } else {
+                $('.back-to-top').fadeOut('slow');
+            }
+        });
+        
+        $('.back-to-top').click(function() {
+            $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+            return false;
+        });
+    </script>
+</body>
+
+</html>

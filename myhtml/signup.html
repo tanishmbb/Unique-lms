@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartLearn | Register</title>
+  <link href="img/favicon.ico" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --accent-color: #4cc9f0;
+      --dark-color: #1a1a2e;
+      --light-color: #f8f9fa;
+      --success-color: #4bb543;
+      --warning-color: #f8961e;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+    
+    .navbar {
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--dark-color);
+    }
+    
+    .auth-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 40px 0;
+      justify-content: center;
+    }
+    a{
+      text-decoration: none;
+    }
+    .auth-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      width: 100%;
+      max-width: 600px;
+    }
+    
+    .auth-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .auth-body {
+      padding: 30px;
+    }
+    
+    .form-control {
+      border-radius: 8px;
+      padding: 12px 15px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+    }
+    
+    .btn-auth {
+      background-color: var(--primary-color);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 8px;
+      width: 100%;
+      transition: all 0.3s;
+    }
+    
+    .btn-auth:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    
+    .auth-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .auth-footer a {
+      color: var(--primary-color);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+    
+    footer {
+      background: var(--dark-color);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    
+    .role-icon {
+      font-size: 24px;
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+    
+    .form-check-input:checked {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .password-strength {
+      height: 5px;
+      background: #eee;
+      border-radius: 5px;
+      margin-top: 5px;
+      overflow: hidden;
+    }
+    
+    .password-strength-bar {
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s;
+    }
+    
+    @media (max-width: 768px) {
+      .auth-container {
+        padding: 20px;
+      }
+      
+      .auth-card {
+        box-shadow: none;
+        border: 1px solid #eee;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>SmartLearn
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Courses</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Course Detail</a></li>
+                            <li><a class="dropdown-item" href="#features">Our Features</a></li>
+                            <li><a class="dropdown-item" href="#">Instructors</a></li>
+                            <li><a class="dropdown-item" href="#">Testimonials</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="ms-lg-3 mt-3 mt-lg-0">
+                    <a href="login.html" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+  <!-- Register Form -->
+  <div class="auth-container d-flex justify-content-center align-items-center">
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+          <div class="auth-card mx-auto"> <!-- mx-auto centers the card -->
+            <div class="auth-header">
+              <h3><i class="fas fa-user-plus me-2"></i>Create Account</h3>
+              <p class="mb-0">Join SmartLearn to start your learning journey</p>
+            </div>
+            
+            <div class="auth-body">
+              <form>
+                <div class="row">
+                  <div class="col-md-6">
+                    <!-- First Name -->
+                    <div class="mb-3">
+                      <label for="firstName" class="form-label">First Name</label>
+                      <input type="text" class="form-control" id="firstName" placeholder="Enter first name" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <!-- Last Name -->
+                    <div class="mb-3">
+                      <label for="lastName" class="form-label">Last Name</label>
+                      <input type="text" class="form-control" id="lastName" placeholder="Enter last name" required>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Email -->
+                <div class="mb-3">
+                  <label for="registerEmail" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="registerEmail" placeholder="Enter your email" required>
+                </div>
+                
+                <!-- Role Selection -->
+                <div class="mb-4">
+                  <label class="form-label">Register As</label>
+                  <div class="d-flex gap-3">
+                    <div class="form-check flex-grow-1">
+                      <input class="form-check-input" type="radio" name="registerRole" id="registerStudent" checked>
+                      <label class="form-check-label d-flex align-items-center" for="registerStudent">
+                        <i class="fas fa-user-graduate role-icon"></i>
+                        <span>Student</span>
+                      </label>
+                    </div>
+                    <div class="form-check flex-grow-1">
+                      <input class="form-check-input" type="radio" name="registerRole" id="registerTeacher">
+                      <label class="form-check-label d-flex align-items-center" for="registerTeacher">
+                        <i class="fas fa-chalkboard-teacher role-icon"></i>
+                        <span>Teacher</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-md-6">
+                    <!-- Password -->
+                    <div class="mb-3">
+                      <label for="registerPassword" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="registerPassword" placeholder="Create password" required>
+                      <div class="password-strength">
+                        <div class="password-strength-bar" id="passwordStrength"></div>
+                      </div>
+                      <small class="text-muted">At least 8 characters</small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <!-- Confirm Password -->
+                    <div class="mb-3">
+                      <label for="confirmPassword" class="form-label">Confirm Password</label>
+                      <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" required>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Terms -->
+                <div class="mb-4">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                    <label class="form-check-label" for="agreeTerms">
+                      I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                  </div>
+                </div>
+                
+                <!-- Submit -->
+                <button type="submit" class="btn btn-auth mb-3">
+                  <i class="fas fa-user-plus me-2"></i>Create Account
+                </button>
+                
+                <!-- Social Register -->
+                <div class="text-center mb-4">
+                  <p class="text-muted">Or sign up with</p>
+                  <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="btn btn-outline-primary rounded-circle">
+                      <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-primary rounded-circle">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-primary rounded-circle">
+                      <i class="fab fa-linkedin-in"></i>
+                    </a>
+                  </div>
+                </div>
+                
+                <!-- Login Link -->
+                <div class="auth-footer">
+                  <p>Already have an account? <a href="login.html">Login here</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h3 class="text-white mb-4">
+                        <i class="fas fa-graduation-cap me-2"></i>SmartLearn
+                    </h3>
+                    <p>Empowering individuals through accessible, high-quality online education to transform careers and lives.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Home</a></li>
+                        <li class="mb-2"><a href="#about">About Us</a></li>
+                        <li class="mb-2"><a href="#courses">Courses</a></li>
+                        <li class="mb-2"><a href="#features">Features</a></li>
+                        <li class="mb-2"><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h4 class="text-white mb-4">Popular Courses</h4>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Web Development</a></li>
+                        <li class="mb-2"><a href="#">Python Programming</a></li>
+                        <li class="mb-2"><a href="#">Data Science</a></li>
+                        <li class="mb-2"><a href="#">Mobile Development</a></li>
+                        <li class="mb-2"><a href="#">UI/UX Design</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h4 class="text-white mb-4">Newsletter</h4>
+                    <p>Subscribe to our newsletter for the latest updates and course offerings.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4" style="border-color: rgba(255, 255, 255, 0.1);">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2023 SmartLearn. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+                        <li class="list-inline-item"><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Password strength indicator
+    document.getElementById('registerPassword').addEventListener('input', function() {
+      const password = this.value;
+      const strengthBar = document.getElementById('passwordStrength');
+      let strength = 0;
+      
+      // Check password length
+      if (password.length >= 8) strength += 1;
+      if (password.length >= 12) strength += 1;
+      
+      // Check for mixed case
+      if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1;
+      
+      // Check for numbers
+      if (password.match(/[0-9]/)) strength += 1;
+      
+      // Check for special chars
+      if (password.match(/[^a-zA-Z0-9]/)) strength += 1;
+      
+      // Update strength bar
+      switch(strength) {
+        case 0:
+          strengthBar.style.width = '0%';
+          strengthBar.style.backgroundColor = '#dc3545';
+          break;
+        case 1:
+          strengthBar.style.width = '25%';
+          strengthBar.style.backgroundColor = '#dc3545';
+          break;
+        case 2:
+          strengthBar.style.width = '50%';
+          strengthBar.style.backgroundColor = '#fd7e14';
+          break;
+        case 3:
+          strengthBar.style.width = '75%';
+          strengthBar.style.backgroundColor = '#ffc107';
+          break;
+        case 4:
+          strengthBar.style.width = '100%';
+          strengthBar.style.backgroundColor = '#28a745';
+          break;
+      }
+    });
+  </script>
+</body>
+
+</html>
