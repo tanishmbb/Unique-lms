@@ -307,26 +307,16 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'index' %}">
-                <i class="fas fa-graduation-cap me-2"></i>SmartLearn
+                <i class="fas fa-graduation-cap me-2"></i>Unique-lms
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'index' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#courses">Courses</a>
-                    </li>
                     
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
+                    
+                    
                 </ul>
                 <div class="ms-lg-3 mt-3 mt-lg-0">
                     <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
@@ -344,70 +334,17 @@
                 <h1 class="display-4 fw-bold mb-4">Learn Without Limits</h1>
                 <p class="lead mb-5">Start, switch, or advance your career with our professional online courses</p>
                 
-                <div class="search-box">
-                    <div class="input-group">
-                        <select class="form-select" style="max-width: 150px;">
-                            <option selected>All Courses</option>
-                            <option>Web Development</option>
-                            <option>Data Science</option>
-                            <option>Mobile Apps</option>
-                            <option>Programming</option>
-                        </select>
-                        <input type="text" class="form-control" placeholder="What do you want to learn?">
-                        <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search me-1"></i> Search
-                        </button>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
     <!-- Hero Section End -->
 
-    <!-- About Section Start -->
-    <section id="about" class="section-padding">
-        <div class="container">
-            <div class="section-title text-center">
-                <h6 class="text-uppercase">About Us</h6>
-                <h2 class="mb-4">First Choice For Online Education Anywhere</h2>
-                <p class="lead mx-auto" style="max-width: 700px;">We provide the best online learning experience with industry experts, practical projects, and career support to help you achieve your goals.</p>
-            </div>
-            
-            <div class="row mt-5">
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stats-card bg-primary">
-                        <h3 class="counter" data-target="123">0</h3>
-                        <p class="mb-0">Available Subjects</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stats-card bg-success">
-                        <h3 class="counter" data-target="1234">0</h3>
-                        <p class="mb-0">Online Courses</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stats-card bg-warning">
-                        <h3 class="counter" data-target="123">0</h3>
-                        <p class="mb-0">Skilled Instructors</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stats-card bg-secondary">
-                        <h3 class="counter" data-target="1234">0</h3>
-                        <p class="mb-0">Happy Students</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- About Section End -->
-
     <!-- Features Section Start -->
-    <section id="features" class="section-padding bg-light">
+    <section id="about" class="section-padding bg-light">
         <div class="container">
             <div class="section-title text-center">
-                <h6 class="text-uppercase">Why Choose Us</h6>
+                <h3 class="text-uppercase">Why Choose Us</h3>
                 <h2 class="mb-4">Why You Should Start Learning With Us?</h2>
                 <p class="lead mx-auto" style="max-width: 700px;">We provide the best online learning experience with industry experts, practical projects, and career support.</p>
             </div>
@@ -472,238 +409,6 @@
     </section>
     <!-- Features Section End -->
 
-    <!-- Courses Section Start -->
-    <section id="courses" class="section-padding">
-        <div class="container">
-            <div class="section-title text-center">
-                <h6 class="text-uppercase">Our Courses</h6>
-                <h2 class="mb-4">Checkout New Releases Of Our Courses</h2>
-                <p class="lead mx-auto" style="max-width: 700px;">Browse our most popular courses and start your learning journey today.</p>
-            </div>
-            
-            <div class="mt-5 position-relative">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <!-- Course 1 -->
-                        <div class="swiper-slide">
-                            <div class="card course-card h-100">
-                                <div class="card-body text-center p-4">
-                                    <div class="course-icon">
-                                        <i class="fab fa-html5"></i>
-                                    </div>
-                                    <span class="course-badge">Popular</span>
-                                    <h5 class="card-title">Web Development</h5>
-                                    <p class="card-text">Master HTML, CSS, JavaScript and modern frameworks</p>
-                                    <div class="d-flex justify-content-between align-items-center mt-4">
-                                        <div>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <span>4.8 (256)</span>
-                                        </div>
-                                        <a href="#" class="btn btn-sm btn-primary">Enroll Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Course 2 -->
-                        <div class="swiper-slide">
-                            <div class="card course-card h-100">
-                                <div class="card-body text-center p-4">
-                                    <div class="course-icon">
-                                        <i class="fab fa-python"></i>
-                                    </div>
-                                    <h5 class="card-title">Python Programming</h5>
-                                    <p class="card-text">From basics to advanced Python concepts and applications</p>
-                                    <div class="d-flex justify-content-between align-items-center mt-4">
-                                        <div>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <span>4.7 (189)</span>
-                                        </div>
-                                        <a href="#" class="btn btn-sm btn-primary">Enroll Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Course 3 -->
-                        <div class="swiper-slide">
-                            <div class="card course-card h-100">
-                                <div class="card-body text-center p-4">
-                                    <div class="course-icon">
-                                        <i class="fab fa-react"></i>
-                                    </div>
-                                    <span class="course-badge">New</span>
-                                    <h5 class="card-title">React JS</h5>
-                                    <p class="card-text">Build modern web applications with React framework</p>
-                                    <div class="d-flex justify-content-between align-items-center mt-4">
-                                        <div>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <span>4.9 (312)</span>
-                                        </div>
-                                        <a href="#" class="btn btn-sm btn-primary">Enroll Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Course 4 -->
-                        <div class="swiper-slide">
-                            <div class="card course-card h-100">
-                                <div class="card-body text-center p-4">
-                                    <div class="course-icon">
-                                        <i class="fas fa-database"></i>
-                                    </div>
-                                    <h5 class="card-title">Data Science</h5>
-                                    <p class="card-text">Learn data analysis, visualization and machine learning</p>
-                                    <div class="d-flex justify-content-between align-items-center mt-4">
-                                        <div>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <span>4.6 (178)</span>
-                                        </div>
-                                        <a href="#" class="btn btn-sm btn-primary">Enroll Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Course 5 -->
-                        <div class="swiper-slide">
-                            <div class="card course-card h-100">
-                                <div class="card-body text-center p-4">
-                                    <div class="course-icon">
-                                        <i class="fas fa-mobile-alt"></i>
-                                    </div>
-                                    <h5 class="card-title">Mobile Development</h5>
-                                    <p class="card-text">Build cross-platform mobile apps with Flutter</p>
-                                    <div class="d-flex justify-content-between align-items-center mt-4">
-                                        <div>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <span>4.5 (142)</span>
-                                        </div>
-                                        <a href="#" class="btn btn-sm btn-primary">Enroll Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Navigation buttons -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </div>
-    </section>
-    <!-- Courses Section End -->
-
-    <!-- Discount Section Start -->
-    <section class="discount-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="discount-form" style="color: black;">
-                        <h2 class="text-center mb-4">15% Off For New Students</h2>
-                        <p class="text-center mb-5">Sign up today and get instant access to all courses with a special discount</p>
-                        
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control form-control-lg" placeholder="Your Name">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control form-control-lg" placeholder="Your Email">
-                                </div>
-                                <div class="col-md-6">
-                                    <select class="form-select form-select-lg">
-                                        <option selected>Select A Course</option>
-                                        <option>Web Development</option>
-                                        <option>Python Programming</option>
-                                        <option>React JS</option>
-                                        <option>Data Science</option>
-                                        <option>Mobile Development</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary btn-lg w-100" type="submit">Sign Up Now</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Discount Section End -->
-
-    <!-- Contact Section Start -->
-    <section id="contact" class="section-padding">
-        <div class="container">
-            <div class="section-title text-center">
-                <h6 class="text-uppercase">Contact Us</h6>
-                <h2 class="mb-4">Get In Touch</h2>
-                <p class="lead mx-auto" style="max-width: 700px;">Have questions? We're here to help. Contact our team for any inquiries.</p>
-            </div>
-            
-            <div class="row mt-5">
-                <div class="col-lg-5 mb-5 mb-lg-0">
-                    <div class="contact-info">
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="contact-icon bg-primary">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Our Location</h4>
-                                <p class="mb-0">123 Education Street, Learning City, 101010</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="contact-icon bg-success">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Call Us</h4>
-                                <p class="mb-0">+1 234 567 8900</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-start">
-                            <div class="contact-icon bg-warning">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email Us</h4>
-                                <p class="mb-0">info@smartlearn.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="bg-white p-4 p-md-5 rounded shadow-sm">
-                        <h3 class="mb-4">Send Us A Message</h3>
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control form-control-lg" placeholder="Your Name" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control form-control-lg" placeholder="Your Email" required>
-                                </div>
-                                <div class="col-12">
-                                    <input type="text" class="form-control form-control-lg" placeholder="Subject" required>
-                                </div>
-                                <div class="col-12">
-                                    <textarea class="form-control form-control-lg" rows="5" placeholder="Your Message" required></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary btn-lg" type="submit">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact Section End -->
 
     <!-- Footer Start -->
     <footer>
@@ -767,9 +472,7 @@
     </footer>
     <!-- Footer End -->
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary btn-lg back-to-top"><i class="fas fa-arrow-up"></i></a>
-
+  
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

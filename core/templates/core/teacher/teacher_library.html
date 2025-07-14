@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+{% load widget_tweaks %}
 
 <head>
   <!-- Same head content as dashboard -->
@@ -222,422 +223,268 @@
 </head>
 
 <body>
- <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="d-flex align-items-center">
-        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle me-3" width="50" height="50">
-        <div>
-          <h6 class="mb-0">Sarah Johnson</h6>
-          <small class="text-muted">Computer Science</small>
-        </div>
-      </div>
-    </div>
-    
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link active" href="{% url 'teacher_dashboard' %}">
-          <i class="fas fa-tachometer-alt"></i> Dashboard
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_courses' %}">
-          <i class="fas fa-book"></i> My Courses
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_assignments' %}">
-          <i class="fas fa-tasks"></i> Assignments
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{ % url 'teacher_schedule' %}">
-          <i class="fas fa-calendar-alt"></i> Schedule
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_student' %}">
-          <i class="fas fa-users"></i> Students
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_progress' %}">
-          <i class="fas fa-chart-bar"></i> Analytics
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_discussion' %}">
-          <i class="fas fa-comments"></i> Discussions
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_library' %}">
-          <i class="fas fa-file-upload"></i> Content Library
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_liveclasses' %}">
-          <i class="fas fa-video"></i> Live Classes
-        </a>
-      </li>
-      
-      <li class="nav-item mt-3">
-        <a class="nav-link" href="{% url 'teacher_settings' %}">
-          <i class="fas fa-cog"></i> Settings
-        </a>
-      </li>
-      <li class="nav-item mt-3">
-        <a class="nav-link" href="signup.html">
-          <i class="fas fa-sign-out-alt"></i> Logout
-        </a>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-      <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
-      </button>
-      
-      <a class="navbar-brand ms-3" href="#">
-        <i class="fas fa-chalkboard-teacher text-primary me-2"></i>
-        <span class="fw-bold">Unique LMS</span> Teacher
+<div class="sidebar" id="sidebar">
+  
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link {% if request.path == '/teacher/dashboard/' %}active{% endif %}" href="{% url 'teacher_dashboard' %}">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
       </a>
-      
-      <div class="d-flex align-items-center">
-        <div class="dropdown me-3">
-          <a href="#" class="dropdown-toggle text-dark position-relative" id="notificationsDropdown" data-bs-toggle="dropdown">
-            <i class="fas fa-bell"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              5
-            </span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-            <h6 class="dropdown-header">Notifications</h6>
-            <a class="dropdown-item" href="#"><i class="fas fa-file-upload text-primary me-2"></i> 3 new assignment submissions</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-question-circle text-warning me-2"></i> 2 student questions</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-calendar-check text-info me-2"></i> Live class starting soon</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-exclamation-triangle text-danger me-2"></i> System maintenance alert</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-center" href="#">View All</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_courses' %}">
+        <i class="fas fa-book"></i> My Courses
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_assignments' %}">
+        <i class="fas fa-tasks"></i> Assignments
+      </a>
+    </li>
+  
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_students' %}">
+        <i class="fas fa-users"></i> Students
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_discussions' %}">
+        <i class="fas fa-comments"></i> Discussions
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_library' %}">
+        <i class="fas fa-file-upload"></i> Content Library
+      </a>
+    </li>
+    
+    <li class="nav-item mt-3">
+      <a class="nav-link" href="{% url 'logout' %}">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </li>
+  </ul>
+</div>
+
+{% load widget_tweaks %}
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <a class="navbar-brand ms-3" href="{% url 'teacher_dashboard' %}">
+      <i class="fas fa-chalkboard-teacher text-primary me-2"></i>
+      <span class="fw-bold">Unique LMS 
+    </a>
+
+     
+
+      <!-- Profile Dropdown -->
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle d-flex align-items-center text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown">
+          <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+            <i class="fas fa-user"></i>
           </div>
-        </div>
-        
-        <div class="dropdown">
-          <a href="#" class="dropdown-toggle d-flex align-items-center text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle me-2" width="32" height="32">
-            <span class="d-none d-lg-inline">Dr. Chen</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{url 'signup'}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
-          </div>
+          <span class="d-none d-lg-inline">{{ request.user.get_full_name }}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a>
+          <a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Main Content -->
-  <div class="main-content" id="mainContent">
-    <div class="container-fluid">
-      <!-- Page Header -->
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Content Library</h2>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadContentModal">
-          <i class="fas fa-upload me-2"></i> Upload Content
-        </button>
+{% load widget_tweaks %}
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <a class="navbar-brand ms-3" href="{% url 'teacher_dashboard' %}">
+      <i class="fas fa-chalkboard-teacher text-primary me-2"></i>
+      <span class="fw-bold">Unique LMS 
+    </a>
+
+     
+
+      <!-- Profile Dropdown -->
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle d-flex align-items-center text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown">
+          {% if request.user.profile.image %}
+            <img src="{{ request.user.profile.image.url }}" class="rounded-circle me-2" width="32" height="32" />
+          {% else %}
+            <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+              <i class="fas fa-user"></i>
+            </div>
+          {% endif %}
+          <span class="d-none d-lg-inline">{{ request.user.get_full_name }}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a>
+          <a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+        </div>
       </div>
+    </div>
+  </div>
+</nav>
+{% load static %}
+{% load humanize %} 
+{% load form_filters %} 
 
-      <!-- Content Filter -->
-      <div class="card mb-4">
-        <div class="card-body">
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+  <div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Content Library</h2>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadContentModal">
+        <i class="fas fa-upload me-2"></i> Upload Content
+      </button>
+    </div>
+
+    <!-- Content Filter -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <form method="get">
           <div class="row">
             <div class="col-md-3">
-              <select class="form-select">
-                <option selected>All Courses</option>
-                <option>Machine Learning Fundamentals</option>
-                <option>Advanced Python Programming</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <select class="form-select">
-                <option selected>All Types</option>
-                <option>Documents</option>
-                <option>Videos</option>
-                <option>Presentations</option>
-                <option>Images</option>
+              <select class="form-select" name="course">
+                <option value="">All Courses</option>
+                {% for course in courses %}
+                  <option value="{{ course.id }}" {% if request.GET.course == course.id|stringformat:"s" %}selected{% endif %}>{{ course.title }}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="col-md-6">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search content...">
-                <button class="btn btn-primary" type="button">
+                <input type="text" name="search" class="form-control" placeholder="Search content..." value="{{ request.GET.search }}">
+                <button class="btn btn-primary" type="submit">
                   <i class="fas fa-search"></i>
                 </button>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Content View Toggle -->
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-outline-primary active"><i class="fas fa-th-large me-2"></i> Grid</button>
-          <button type="button" class="btn btn-outline-primary"><i class="fas fa-list me-2"></i> List</button>
-        </div>
-        <div class="text-muted small">Showing 24 of 87 items</div>
-      </div>
-
-      <!-- Content Grid -->
-      <div class="row">
-        <!-- Content Item 1 -->
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-          <div class="card h-100">
-            <div class="card-img-top bg-light text-center py-4">
-              <i class="fas fa-file-pdf fa-3x text-danger"></i>
-            </div>
-            <div class="card-body">
-              <h6 class="card-title">Lecture 1 Slides</h6>
-              <small class="text-muted">PDF • 2.4 MB</small>
-              <div class="mt-2">
-                <span class="badge bg-primary">Machine Learning</span>
-              </div>
-            </div>
-            <div class="card-footer bg-transparent">
-              <div class="dropdown d-inline-block">
-                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                  <i class="fas fa-ellipsis-h"></i>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>Preview</a></li>
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Download</a></li>
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-link me-2"></i>Get Share Link</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
-                  <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i>Delete</a></li>
-                </ul>
-              </div>
-              <small class="text-muted float-end mt-1">Uploaded: Jul 5</small>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Content Item 2 -->
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-          <div class="card h-100">
-            <div class="card-img-top bg-light text-center py-4">
-              <i class="fas fa-file-video fa-3x text-primary"></i>
-            </div>
-            <div class="card-body">
-              <h6 class="card-title">Intro to Python</h6>
-              <small class="text-muted">MP4 • 45.2 MB</small>
-              <div class="mt-2">
-                <span class="badge bg-success">Advanced Python</span>
-              </div>
-            </div>
-            <div class="card-footer bg-transparent">
-              <div class="dropdown d-inline-block">
-                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                  <i class="fas fa-ellipsis-h"></i>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>Preview</a></li>
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Download</a></li>
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-link me-2"></i>Get Share Link</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
-                  <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i>Delete</a></li>
-                </ul>
-              </div>
-              <small class="text-muted float-end mt-1">Uploaded: Jun 28</small>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Content Item 3 -->
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-          <div class="card h-100">
-            <div class="card-img-top bg-light text-center py-4">
-              <i class="fas fa-file-word fa-3x text-info"></i>
-            </div>
-            <div class="card-body">
-              <h6 class="card-title">Assignment 1 Template</h6>
-              <small class="text-muted">DOCX • 1.1 MB</small>
-              <div class="mt-2">
-                <span class="badge bg-primary">Machine Learning</span>
-              </div>
-            </div>
-            <div class="card-footer bg-transparent">
-              <div class="dropdown d-inline-block">
-                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                  <i class="fas fa-ellipsis-h"></i>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>Preview</a></li>
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Download</a></li>
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-link me-2"></i>Get Share Link</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
-                  <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i>Delete</a></li>
-                </ul>
-              </div>
-              <small class="text-muted float-end mt-1">Uploaded: Jun 20</small>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Add New Content Card -->
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-          <div class="card h-100 border-dashed">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center">
-              <div class="text-center py-4">
-                <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
-                <h5 class="mb-1">Upload New Content</h5>
-                <p class="text-muted small mb-3">Drag and drop files here or click to browse</p>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadContentModal">
-                  <i class="fas fa-upload me-2"></i> Upload Files
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Storage Usage -->
-      <div class="card mt-4">
-        <div class="card-header">
-          <h5 class="mb-0">Storage Usage</h5>
-        </div>
-        <div class="card-body">
-          <div class="d-flex justify-content-between mb-3">
-            <div>
-              <h6 class="mb-1">1.8 GB of 5 GB used</h6>
-              <small class="text-muted">36% of your storage quota</small>
-            </div>
-            <button class="btn btn-sm btn-outline-primary">Upgrade Storage</button>
-          </div>
-          <div class="progress" style="height: 8px;">
-            <div class="progress-bar" style="width: 36%"></div>
-          </div>
-          
-          <div class="row mt-4">
-            <div class="col-md-3">
-              <div class="d-flex align-items-center">
-                <div class="bg-primary bg-opacity-10 p-2 rounded me-3">
-                  <i class="fas fa-file-pdf text-primary"></i>
-                </div>
-                <div>
-                  <h6 class="mb-0">1.2 GB</h6>
-                  <small class="text-muted">Documents</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="d-flex align-items-center">
-                <div class="bg-success bg-opacity-10 p-2 rounded me-3">
-                  <i class="fas fa-file-video text-success"></i>
-                </div>
-                <div>
-                  <h6 class="mb-0">520 MB</h6>
-                  <small class="text-muted">Videos</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="d-flex align-items-center">
-                <div class="bg-warning bg-opacity-10 p-2 rounded me-3">
-                  <i class="fas fa-file-image text-warning"></i>
-                </div>
-                <div>
-                  <h6 class="mb-0">85 MB</h6>
-                  <small class="text-muted">Images</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="d-flex align-items-center">
-                <div class="bg-info bg-opacity-10 p-2 rounded me-3">
-                  <i class="fas fa-file-audio text-info"></i>
-                </div>
-                <div>
-                  <h6 class="mb-0">15 MB</h6>
-                  <small class="text-muted">Audio</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
-  </div>
 
-  <!-- Upload Content Modal -->
-  <div class="modal fade" id="uploadContentModal" tabindex="-1" aria-labelledby="uploadContentModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="uploadContentModalLabel">Upload Content</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="border-dashed rounded p-4 text-center mb-3" style="background-color: #f8f9fa;">
-            <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
-            <h5>Drag and drop files here</h5>
-            <p class="text-muted small mb-3">or</p>
-            <button class="btn btn-primary">
-              <i class="fas fa-folder-open me-2"></i> Browse Files
-            </button>
+    <!-- Content Grid -->
+    <div class="row">
+      {% for content in contents %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-title">{{ content.title }}</h6>
+              <small class="text-muted">{{ content.file.name|slice:"12:" }}</small> <!-- filename without upload path -->
+              {% if content.course %}
+                <div class="mt-2">
+                  <span class="badge bg-primary">{{ content.course.title }}</span>
+                </div>
+              {% endif %}
+            </div>
+            <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+              <a href="{{ content.file.url }}" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">
+                <i class="fas fa-file-pdf me-1"></i> View PDF
+              </a>
+              <a href="{{ content.file.url }}" class="btn btn-sm btn-outline-secondary" download>
+                <i class="fas fa-download me-1"></i> Download
+              </a>
+            </div>
           </div>
-          
-          <form>
+        </div>
+      {% empty %}
+        <p class="text-muted">No content found.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation" class="mt-4">
+      <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.course %}&course={{ request.GET.course }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">Previous</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled"><span class="page-link">Previous</span></li>
+        {% endif %}
+
+        <li class="page-item disabled"><span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span></li>
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.course %}&course={{ request.GET.course }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">Next</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled"><span class="page-link">Next</span></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <!-- Upload Content Modal -->
+    <div class="modal fade" id="uploadContentModal" tabindex="-1" aria-labelledby="uploadContentModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form method="post" enctype="multipart/form-data" action="{% url 'teacher_library' %}" class="modal-content">
+          {% csrf_token %}
+          <div class="modal-header">
+            <h5 class="modal-title" id="uploadContentModalLabel">Upload Content (PDF only)</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+            {% endif %}
             <div class="mb-3">
-              <label for="contentCourse" class="form-label">Assign to Course</label>
-              <select class="form-select" id="contentCourse">
-                <option selected>Select course</option>
-                <option>Machine Learning Fundamentals</option>
-                <option>Advanced Python Programming</option>
-                <option>General Library</option>
-              </select>
+              <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+              {{ form.title|add_class:"form-control" }}
+              {% for error in form.title.errors %}
+                <div class="text-danger small">{{ error }}</div>
+              {% endfor %}
+
             </div>
-            
             <div class="mb-3">
-              <label for="contentFolder" class="form-label">Folder (Optional)</label>
-              <select class="form-select" id="contentFolder">
-                <option selected>Root folder</option>
-                <option>Lectures</option>
-                <option>Assignments</option>
-                <option>Resources</option>
-              </select>
+              <label for="{{ form.file.id_for_label }}" class="form-label">PDF File</label>
+              {{ form.file|add_class:"form-control" }}
+              {% for error in form.file.errors %}
+                <div class="text-danger small">{{ error }}</div>
+              {% endfor %}
             </div>
-            
+            <div class="mb-3">
+              <label for="{{ form.course.id_for_label }}" class="form-label">Course (optional)</label>
+              {{ form.course|add_class:"form-select" }}
+              {% for error in form.course.errors %}
+                <div class="text-danger small">{{ error }}</div>
+              {% endfor %}
+            </div>
             <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" id="contentVisibility">
-              <label class="form-check-label" for="contentVisibility">
+              {{ form.is_visible_to_students|add_class:"form-check-input" }}
+              <label class="form-check-label" for="{{ form.is_visible_to_students.id_for_label }}">
                 Make immediately visible to students
               </label>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Upload Files</button>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Upload</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
+
+  
 <!-- Footer -->
   <footer class="bg-dark text-white-50 py-4">
     <div class="container-fluid">

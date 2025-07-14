@@ -1,637 +1,427 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Same head content as dashboard -->
-  <title>SmartLearn | My Courses</title>
-   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <head>
+    <!-- Same head content as dashboard -->
+    <title>SmartLearn | My Courses</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-  <style>
-    .course-card-img {
-      height: 160px;
-      object-fit: cover;
-      border-radius: 8px 8px 0 0;
-    }
-    .instructor-img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-    }
-    .rating {
-      color: var(--warning-color);
-    }
-    :root {
-      --primary-color: #4361ee;
-      --secondary-color: #3f37c9;
-      --accent-color: #4cc9f0;
-      --dark-color: #1a1a2e;
-      --light-color: #f8f9fa;
-      --success-color: #4bb543;
-      --warning-color: #f8961e;
-    }
-    
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f5f7fa;
-      color: #333;
-      overflow-x: hidden;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-    }
-    
-    .navbar {
-      background: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      padding-left: 270px; /* Account for sidebar */
-    }
-    
-    .sidebar {
-      background: var(--dark-color);
-      min-height: 100vh;
-      color: white;
-      position: fixed;
-      width: 250px;
-      transition: all 0.3s;
-      left: 0;
-      top: 0;
-      z-index: 1001;
-      overflow-y: auto;
-    }
-    
-    .sidebar-header {
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.2);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .sidebar .nav-link {
-      color: rgba(255, 255, 255, 0.8);
-      padding: 12px 20px;
-      margin: 5px 10px;
-      border-radius: 5px;
-      transition: all 0.3s;
-    }
-    
-    .sidebar .nav-link:hover, 
-    .sidebar .nav-link.active {
-      background: var(--primary-color);
-      color: white;
-    }
-    
-    .sidebar .nav-link i {
-      margin-right: 10px;
-      width: 20px;
-      text-align: center;
-    }
-    
-    .main-content {
-      margin-left: 250px;
-      padding: 80px 20px 20px;
-      transition: all 0.3s;
-      min-height: 100vh;
-    }
-    
-    .top-bar {
-      background: white;
-      padding: 15px 25px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .card {
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      margin-bottom: 20px;
-      transition: transform 0.3s;
-    }
-    
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .card-header {
-      background: white;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      font-weight: 600;
-      padding: 15px 20px;
-      border-radius: 10px 10px 0 0 !important;
-    }
-    
-    .course-card {
-      transition: all 0.3s;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    
-    .course-card:hover {
-      border-color: var(--primary-color);
-    }
-    
-    .course-progress {
-      height: 6px;
-      border-radius: 3px;
-    }
-    
-    .badge-primary {
-      background: var(--primary-color);
-    }
-    
-    .btn-primary {
-      background: var(--primary-color);
-      border: none;
-    }
-    
-    .btn-primary:hover {
-      background: var(--secondary-color);
-    }
-    
-    .user-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    
-    .notification-dot {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--warning-color);
-    }
-    
-    @media (max-width: 992px) {
+    <style>
+      .course-card-img {
+        height: 160px;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;
+      }
+      .instructor-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+      .rating {
+        color: var(--warning-color);
+      }
+      :root {
+        --primary-color: #4361ee;
+        --secondary-color: #3f37c9;
+        --accent-color: #4cc9f0;
+        --dark-color: #1a1a2e;
+        --light-color: #f8f9fa;
+        --success-color: #4bb543;
+        --warning-color: #f8961e;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f5f7fa;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+      }
+
       .navbar {
-        padding-left: 20px;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        padding-left: 270px; /* Account for sidebar */
       }
-      
+
       .sidebar {
-        transform: translateX(-100%);
+        background: var(--dark-color);
+        min-height: 100vh;
+        color: white;
+        position: fixed;
+        width: 250px;
+        transition: all 0.3s;
+        left: 0;
+        top: 0;
+        z-index: 1001;
+        overflow-y: auto;
       }
-      
-      .sidebar.active {
-        transform: translateX(0);
+
+      .sidebar-header {
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
-      
+
+      .sidebar .nav-link {
+        color: rgba(255, 255, 255, 0.8);
+        padding: 12px 20px;
+        margin: 5px 10px;
+        border-radius: 5px;
+        transition: all 0.3s;
+      }
+
+      .sidebar .nav-link:hover,
+      .sidebar .nav-link.active {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .sidebar .nav-link i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+
       .main-content {
-        margin-left: 0;
+        margin-left: 250px;
+        padding: 80px 20px 20px;
+        transition: all 0.3s;
+        min-height: 100vh;
       }
-    }
-    
-    /* Ensure content doesn't get hidden behind footer */
-    .main-content {
-      padding-bottom: 100px;
-    }
-    
-    footer {
-      position: relative;
-      margin-top: -80px;
-    }
-  </style>
-</head>
+
+      .top-bar {
+        background: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card-header {
+        background: white;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        font-weight: 600;
+        padding: 15px 20px;
+        border-radius: 10px 10px 0 0 !important;
+      }
+
+      .course-card {
+        transition: all 0.3s;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .course-card:hover {
+        border-color: var(--primary-color);
+      }
+
+      .course-progress {
+        height: 6px;
+        border-radius: 3px;
+      }
+
+      .badge-primary {
+        background: var(--primary-color);
+      }
+
+      .btn-primary {
+        background: var(--primary-color);
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary-color);
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .notification-dot {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--warning-color);
+      }
+
+      @media (max-width: 992px) {
+        .navbar {
+          padding-left: 20px;
+        }
+
+        .sidebar {
+          transform: translateX(-100%);
+        }
+
+        .sidebar.active {
+          transform: translateX(0);
+        }
+
+        .main-content {
+          margin-left: 0;
+        }
+      }
+
+      /* Ensure content doesn't get hidden behind footer */
+      .main-content {
+        padding-bottom: 100px;
+      }
+
+      footer {
+        position: relative;
+        margin-top: -80px;
+      }
+    </style>
+  </head>
+  <body>
+    {% load static %}
+
 <body>
-  <!-- Same sidebar and navbar as dashboard -->
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="d-flex align-items-center">
-        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle me-3" width="50" height="50">
-        <div>
-          <h6 class="mb-0">Sarah Johnson</h6>
-          <small class="text-muted">Computer Science</small>
-        </div>
+ <!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="d-flex align-items-center">
+      <div>
+        <h6 class="mb-0">{{ request.user.student_name|default:request.user.email|cut:"@gmail.com" }}
+</h6>
+        
       </div>
     </div>
-    
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link active" href="{% url 'student_dashboard' %}">
-          <i class="fas fa-tachometer-alt"></i> Dashboard
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'student_courses' %}">
-          <i class="fas fa-book"></i> My Courses
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'student_assignments' %}">
-          <i class="fas fa-tasks"></i> Assignments
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'student_schedule' %}">
-          <i class="fas fa-calendar-alt"></i> Schedule
-        </a>
-      </li>
-      
-      <li class="nav-item">
-<a class="nav-link" href="{% url 'student_progress' %}">          <i class="fas fa-chart-bar"></i> Progress
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'student_discussion' %}">
-          <i class="fas fa-comments"></i> Discussions
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'student_certificates' %}">
-          <i class="fas fa-file-certificate"></i> Certificates
-        </a>
-      </li>
-      
-      <li class="nav-item mt-3">
-        <a class="nav-link" href="{% url 'signup' %}">
-          <i class="fas fa-sign-out-alt"></i> Logout
-        </a>
-      </li>
-    </ul>
   </div>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-      <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
-      </button>
-      
-      <a class="navbar-brand ms-3" href="#">
-        <i class="fas fa-graduation-cap text-primary me-2"></i>
-        <span class="fw-bold">SmartLearn</span> Student
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link {% if request.path == '/student/dashboard/' %}active{% endif %}" href="{% url 'student_dashboard' %}">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
       </a>
-      
-      <div class="d-flex align-items-center">
-        <div class="dropdown me-3">
-          <a href="#" class="dropdown-toggle text-dark position-relative" id="notificationsDropdown" data-bs-toggle="dropdown">
-            <i class="fas fa-bell"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              3
-            </span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-            <h6 class="dropdown-header">Notifications</h6>
-            <a class="dropdown-item" href="#">New assignment posted</a>
-            <a class="dropdown-item" href="#">Grade updated for ML Project</a>
-            <a class="dropdown-item" href="#">Live class starting soon</a>
-          </div>
-        </div>
-        
-        <div class="dropdown">
-          <a href="#" class="dropdown-toggle d-flex align-items-center text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle me-2" width="32" height="32">
-            <span class="d-none d-lg-inline">Sarah Johnson</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
-          </div>
-        </div>
-      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link {% if request.path == '/student/courses/' %}active{% endif %}" href="{% url 'student_courses' %}">
+        <i class="fas fa-book"></i> My Courses
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link {% if request.path == '/student/assignments/' %}active{% endif %}" href="{% url 'assignments' %}">
+        <i class="fas fa-tasks"></i> Assignments
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link {% if request.path == '/student/discussions/' %}active{% endif %}" href="{% url 'student_discussions' %}">
+        <i class="fas fa-comments"></i> Discussions
+      </a>
+    </li>
+
+    <li class="nav-item mt-3">
+      <a class="nav-link" href="{% url 'logout' %}">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <a class="navbar-brand ms-3" href="#">
+      <i class="fas fa-graduation-cap text-primary me-2"></i>
+      <span class="fw-bold">SmartLearn</span> Student
+    </a>
+
+    <div class="d-flex align-items-center text-dark">
+      {{ request.user.student_name|default:request.user.email|cut:"@gmail.com" }}
+
     </div>
-  </nav>
-  <div class="main-content">
-    <div class="container-fluid">
-      <div class="top-bar">
-        <h4>My Courses</h4>
-        <div class="d-flex">
-          <div class="input-group me-3" style="width: 300px;">
-            <input type="text" class="form-control" placeholder="Search courses...">
-            <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-          </div>
-          <button class="btn btn-primary"><i class="fas fa-plus me-2"></i>Enroll New</button>
-        </div>
-      </div>
+  </div>
+</nav>
 
-      <!-- Course Categories -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">All Courses</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">In Progress</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Completed</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Saved</a>
-            </li>
-          </ul>
-        </div>
-      </div>
 
-      <!-- Course Grid -->
-      <div class="row">
-        <!-- Course 1 -->
-        <div class="col-md-4 mb-4">
-          <div class="card course-card h-100">
-            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="course-card-img">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <span class="badge bg-primary">Data Science</span>
-                <div class="dropdown">
-                  <button class="btn btn-sm btn-link text-muted" data-bs-toggle="dropdown">
-                    <i class="fas fa-ellipsis-v"></i>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>View</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Resources</a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5>Machine Learning Fundamentals</h5>
-              <p class="text-muted small mb-3">Learn core ML concepts and build your first models</p>
-              
-              <div class="d-flex align-items-center mb-3">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="instructor-img me-2">
-                <small class="text-muted">Dr. Michael Chen</small>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star-half-alt rating"></i>
-                  <small class="text-muted ms-1">4.5 (128)</small>
-                </div>
-                <small class="text-muted">12 Modules</small>
-              </div>
-              
-              <div class="mb-3">
-                <small class="text-muted">Progress: 65%</small>
-                <div class="progress course-progress mt-1">
-                  <div class="progress-bar" style="width: 65%"></div>
-                </div>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <span class="badge bg-light text-dark me-2">
-                    <i class="fas fa-tasks me-1"></i> 2 New
-                  </span>
-                </div>
-                <a href="#" class="btn btn-sm btn-primary">Continue</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Course 2 -->
-        <div class="col-md-4 mb-4">
-          <div class="card course-card h-100">
-            <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="course-card-img">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <span class="badge bg-success">Programming</span>
-                <div class="dropdown">
-                  <button class="btn btn-sm btn-link text-muted" data-bs-toggle="dropdown">
-                    <i class="fas fa-ellipsis-v"></i>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>View</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Resources</a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5>Advanced Python Programming</h5>
-              <p class="text-muted small mb-3">Master Python with advanced concepts and projects</p>
-              
-              <div class="d-flex align-items-center mb-3">
-                <img src="https://randomuser.me/api/portraits/women/68.jpg" class="instructor-img me-2">
-                <small class="text-muted">Prof. Emma Wilson</small>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="far fa-star rating"></i>
-                  <small class="text-muted ms-1">4.0 (92)</small>
-                </div>
-                <small class="text-muted">8 Modules</small>
-              </div>
-              
-              <div class="mb-3">
-                <small class="text-muted">Progress: 42%</small>
-                <div class="progress course-progress mt-1">
-                  <div class="progress-bar" style="width: 42%"></div>
-                </div>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <span class="badge bg-light text-dark me-2">
-                    <i class="fas fa-video me-1"></i> Live Today
-                  </span>
-                </div>
-                <a href="#" class="btn btn-sm btn-primary">Continue</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Course 3 -->
-        <div class="col-md-4 mb-4">
-          <div class="card course-card h-100">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="course-card-img">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <span class="badge bg-info">Statistics</span>
-                <div class="dropdown">
-                  <button class="btn btn-sm btn-link text-muted" data-bs-toggle="dropdown">
-                    <i class="fas fa-ellipsis-v"></i>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>View</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Resources</a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5>Data Analysis with R</h5>
-              <p class="text-muted small mb-3">Learn statistical analysis and visualization</p>
-              
-              <div class="d-flex align-items-center mb-3">
-                <img src="https://randomuser.me/api/portraits/men/45.jpg" class="instructor-img me-2">
-                <small class="text-muted">Dr. Robert Kim</small>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <small class="text-muted ms-1">5.0 (76)</small>
-                </div>
-                <small class="text-muted">10 Modules</small>
-              </div>
-              
-              <div class="mb-3">
-                <small class="text-muted">Progress: 28%</small>
-                <div class="progress course-progress mt-1">
-                  <div class="progress-bar" style="width: 28%"></div>
-                </div>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <span class="badge bg-light text-dark me-2">
-                    <i class="fas fa-book me-1"></i> New Content
-                  </span>
-                </div>
-                <a href="#" class="btn btn-sm btn-primary">Continue</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Completed Course -->
-        <div class="col-md-4 mb-4">
-          <div class="card course-card h-100">
-            <div class="position-relative">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="course-card-img">
-              <div class="position-absolute top-0 end-0 bg-success text-white p-1 px-2 m-2 rounded small">
-                Completed
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <span class="badge bg-secondary">Web Dev</span>
-                <div class="dropdown">
-                  <button class="btn btn-sm btn-link text-muted" data-bs-toggle="dropdown">
-                    <i class="fas fa-ellipsis-v"></i>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>View</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Resources</a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5>Modern Web Development</h5>
-              <p class="text-muted small mb-3">Build responsive websites with HTML, CSS & JS</p>
-              
-              <div class="d-flex align-items-center mb-3">
-                <img src="https://randomuser.me/api/portraits/women/33.jpg" class="instructor-img me-2">
-                <small class="text-muted">Prof. Lisa Wong</small>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <i class="fas fa-star rating"></i>
-                  <small class="text-muted ms-1">5.0 (210)</small>
-                </div>
-                <small class="text-muted">14 Modules</small>
-              </div>
-              
-              <div class="mb-3">
-                <small class="text-muted">Progress: 100%</small>
-                <div class="progress course-progress mt-1">
-                  <div class="progress-bar" style="width: 100%"></div>
-                </div>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <span class="badge bg-success text-white me-2">
-                    <i class="fas fa-certificate me-1"></i> Certificate Ready
-                  </span>
-                </div>
-                <a href="#" class="btn btn-sm btn-outline-primary">View</a>
-              </div>
-            </div>
-          </div>
-        </div>
+{% load static %}
+
+
+
+<div class="main-content" id="mainContent">
+  <div class="container-fluid py-4">
+
+    <h2 class="fw-bold mb-4">My Courses</h2>
+
+    <!-- Search + Sort -->
+    <form method="get" class="row g-3 mb-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" name="search" placeholder="Search course..." value="{{ search_query }}">
       </div>
-      
-      <!-- Pagination -->
-      <nav aria-label="Page navigation">
+      <div class="col-md-3">
+        <select name="sort_by" class="form-select">
+          <option value="title" {% if sort_by == 'title' %}selected{% endif %}>Title</option>
+          <option value="progress" {% if sort_by == 'progress' %}selected{% endif %}>Progress</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Apply</button>
+      </div>
+    </form>
+
+    <!-- Filter Pills -->
+    
+
+    <!-- Course Grid -->
+    <div class="row">
+      {% if courses %}
+        {% for course in courses %}
+          <div class="col-md-4 mb-4">
+            <div class="card course-card h-100">
+              {% if course.thumbnail %}
+                <img src="{{ course.thumbnail.url }}" class="course-card-img" alt="Course Image" />
+              {% else %}
+                <img src="https://via.placeholder.com/500x300?text=No+Image" class="course-card-img" alt="No Image" />
+              {% endif %}
+              <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="badge bg-secondary">
+                    {% if course.category %}{{ course.category.name }}{% else %}General{% endif %}
+                  </span>
+                  <span class="badge bg-light text-dark">
+                    <i class="fas {{ course.badge_icon }} me-1"></i> {{ course.badge_text }}
+                  </span>
+                </div>
+
+                <h5 class="card-title">{{ course.title }}</h5>
+                <p class="text-muted small">{{ course.description|truncatewords:12 }}</p>
+
+                <small class="text-muted">By {{ course.instructor.full_name }}</small>
+
+                <div class="mt-2">
+                  <small class="text-muted">Progress: {{ course.progress }}%</small>
+                  <div class="progress">
+                    <div class="progress-bar bg-primary" style="width: {{ course.progress }}%"></div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-12 text-center py-5">
+          <h5 class="text-muted">No courses found under this category.</h5>
+          <p>Try enrolling in some courses to get started!</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+      <nav class="mt-4">
         <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-          </li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}&{{ request.GET.urlencode|safe }}">«</a>
+            </li>
+          {% endif %}
+          {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+              <a class="page-link" href="?page={{ num }}&{{ request.GET.urlencode|safe }}">{{ num }}</a>
+            </li>
+          {% endfor %}
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}&{{ request.GET.urlencode|safe }}">»</a>
+            </li>
+          {% endif %}
         </ul>
       </nav>
-    </div>
+    {% endif %}
   </div>
-  <footer class="bg-dark text-white-50 py-4">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6">
-          <p class="mb-0">&copy; 2025 SmartLearn LMS. All rights reserved.</p>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <p class="mb-0">Made with <i class="fas fa-heart text-danger"></i> by Tanish</p>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- Same footer as dashboard -->
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <script>
-    // Toggle sidebar on mobile
-    document.getElementById('sidebarToggle').addEventListener('click', function() {
-      document.getElementById('sidebar').classList.toggle('active');
-    });
+</div>
+
+
+
+
     
-    // Close sidebar when clicking outside on mobile
-    document.addEventListener('click', function(event) {
-      const sidebar = document.getElementById('sidebar');
-      const sidebarToggle = document.getElementById('sidebarToggle');
-      
-      if (window.innerWidth < 992 && 
-          !sidebar.contains(event.target) && 
+    <!-- Same footer as dashboard -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Toggle sidebar on mobile
+      document
+        .getElementById("sidebarToggle")
+        .addEventListener("click", function () {
+          document.getElementById("sidebar").classList.toggle("active");
+        });
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener("click", function (event) {
+        const sidebar = document.getElementById("sidebar");
+        const sidebarToggle = document.getElementById("sidebarToggle");
+
+        if (
+          window.innerWidth < 992 &&
+          !sidebar.contains(event.target) &&
           !sidebarToggle.contains(event.target) &&
-          sidebar.classList.contains('active')) {
-        sidebar.classList.remove('active');
-      }
-    });
-  </script>
-</body>
+          sidebar.classList.contains("active")
+        ) {
+          sidebar.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
 </html>

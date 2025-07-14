@@ -201,452 +201,273 @@
 </head>
 
 <body>
-  <<!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="d-flex align-items-center">
-        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle me-3" width="50" height="50">
-        <div>
-          <h6 class="mb-0">Sarah Johnson</h6>
-          <small class="text-muted">Computer Science</small>
-        </div>
-      </div>
-    </div>
-    
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link active" href="{% url 'teacher_dashboard' %}">
-          <i class="fas fa-tachometer-alt"></i> Dashboard
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_courses' %}">
-          <i class="fas fa-book"></i> My Courses
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_assignments' %}">
-          <i class="fas fa-tasks"></i> Assignments
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{ % url 'teacher_schedule' %}">
-          <i class="fas fa-calendar-alt"></i> Schedule
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_student' %}">
-          <i class="fas fa-users"></i> Students
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_progress' %}">
-          <i class="fas fa-chart-bar"></i> Analytics
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_discussion' %}">
-          <i class="fas fa-comments"></i> Discussions
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_library' %}">
-          <i class="fas fa-file-upload"></i> Content Library
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_liveclasses' %}">
-          <i class="fas fa-video"></i> Live Classes
-        </a>
-      </li>
-      
-      <li class="nav-item mt-3">
-        <a class="nav-link" href="{% url 'teacher_settings' %}">
-          <i class="fas fa-cog"></i> Settings
-        </a>
-      </li>
-      <li class="nav-item mt-3">
-        <a class="nav-link" href="signup.html">
-          <i class="fas fa-sign-out-alt"></i> Logout
-        </a>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-      <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
-      </button>
-      
-      <a class="navbar-brand ms-3" href="#">
-        <i class="fas fa-chalkboard-teacher text-primary me-2"></i>
-        <span class="fw-bold">Unique LMS</span> Teacher
+<div class="sidebar" id="sidebar">
+  
+  
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link {% if request.path == '/teacher/dashboard/' %}active{% endif %}" href="{% url 'teacher_dashboard' %}">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
       </a>
-      
-      <div class="d-flex align-items-center">
-        <div class="dropdown me-3">
-          <a href="#" class="dropdown-toggle text-dark position-relative" id="notificationsDropdown" data-bs-toggle="dropdown">
-            <i class="fas fa-bell"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              5
-            </span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-            <h6 class="dropdown-header">Notifications</h6>
-            <a class="dropdown-item" href="#"><i class="fas fa-file-upload text-primary me-2"></i> 3 new assignment submissions</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-question-circle text-warning me-2"></i> 2 student questions</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-calendar-check text-info me-2"></i> Live class starting soon</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-exclamation-triangle text-danger me-2"></i> System maintenance alert</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-center" href="#">View All</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_courses' %}">
+        <i class="fas fa-book"></i> My Courses
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_assignments' %}">
+        <i class="fas fa-tasks"></i> Assignments
+      </a>
+    </li>
+  
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_students' %}">
+        <i class="fas fa-users"></i> Students
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_discussions' %}">
+        <i class="fas fa-comments"></i> Discussions
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_library' %}">
+        <i class="fas fa-file-upload"></i> Content Library
+      </a>
+    </li>
+    
+    <li class="nav-item mt-3">
+      <a class="nav-link" href="{% url 'logout' %}">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </li>
+  </ul>
+</div>
+
+{% load widget_tweaks %}
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <a class="navbar-brand ms-3" href="{% url 'teacher_dashboard' %}">
+      <i class="fas fa-chalkboard-teacher text-primary me-2"></i>
+      <span class="fw-bold">Unique LMS </span>
+    </a>
+
+     
+
+      <!-- Profile Dropdown -->
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle d-flex align-items-center text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown">
+          <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+            <i class="fas fa-user"></i>
           </div>
-        </div>
-        
-        <div class="dropdown">
-          <a href="#" class="dropdown-toggle d-flex align-items-center text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle me-2" width="32" height="32">
-            <span class="d-none d-lg-inline">Dr. Chen</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{url 'signup'}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
-          </div>
+          <span class="d-none d-lg-inline">{{ request.user.get_full_name }}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a>
+          <a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
+{% load widget_tweaks %}
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <a class="navbar-brand ms-3" href="{% url 'teacher_dashboard' %}">
+      <i class="fas fa-chalkboard-teacher text-primary me-2"></i>
+      <span class="fw-bold">Unique LMS </span>
+    </a>
+
+     
+
+      <!-- Profile Dropdown -->
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle d-flex align-items-center text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown">
+          {% if request.user.profile.image %}
+            <img src="{{ request.user.profile.image.url }}" class="rounded-circle me-2" width="32" height="32" />
+          {% else %}
+            <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+              <i class="fas fa-user"></i>
+            </div>
+          {% endif %}
+          <span class="d-none d-lg-inline">{{ request.user.get_full_name }}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a>
+          <a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
   <!-- Main Content -->
   <div class="main-content" id="mainContent">
-    <div class="container-fluid">
-      <!-- Page Header -->
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>My Courses</h2>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">
-          <i class="fas fa-plus me-2"></i> Create New Course
-        </button>
-      </div>
+  <div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>My Courses</h2>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">
+        <i class="fas fa-plus me-2"></i> Create New Course
+      </button>
+    </div>
 
-      <!-- Course Filter -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-3">
-              <select class="form-select">
-                <option selected>All Categories</option>
-                <option>Computer Science</option>
-                <option>Mathematics</option>
-                <option>Engineering</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <select class="form-select">
-                <option selected>All Status</option>
-                <option>Active</option>
-                <option>Draft</option>
-                <option>Archived</option>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search courses...">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
+    <!-- Course Filter -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <select class="form-select">
+              <option selected>All Categories</option>
+              {% for category in categories %}
+              <option>{{ category.name }}</option>
+              {% endfor %}
+            </select>
           </div>
-        </div>
-      </div>
-
-      <!-- Courses Grid -->
-      <div class="row">
-        <!-- Course 1 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card teacher-course-card h-100">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-3">
-                <span class="badge bg-primary">Data Science</span>
-                <div class="dropdown">
-                  <button class="btn btn-sm btn-link text-muted" data-bs-toggle="dropdown">
-                    <i class="fas fa-ellipsis-v"></i>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-users me-2"></i>Students</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-chart-bar me-2"></i>Analytics</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-archive me-2"></i>Archive</a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5>Machine Learning Fundamentals</h5>
-              <p class="text-muted small mb-3">CS501 - Spring 2025</p>
-              
-              <div class="mb-3">
-                <div class="d-flex justify-content-between small mb-1">
-                  <span>Course Completion</span>
-                  <span>65% avg</span>
-                </div>
-                <div class="progress">
-                  <div class="progress-bar" style="width: 65%"></div>
-                </div>
-              </div>
-              
-              <div class="row text-center">
-                <div class="col-4">
-                  <h6 class="mb-0">24</h6>
-                  <small class="text-muted">Students</small>
-                </div>
-                <div class="col-4">
-                  <h6 class="mb-0">5</h6>
-                  <small class="text-muted">Modules</small>
-                </div>
-                <div class="col-4">
-                  <h6 class="mb-0">3</h6>
-                  <small class="text-muted">Assignments</small>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer bg-transparent">
-              <a href="#" class="btn btn-sm btn-primary me-2"><i class="fas fa-chalkboard me-1"></i> Teach</a>
-              <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye me-1"></i> Preview</a>
-              <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-cog me-1"></i> Settings</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Course 2 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card teacher-course-card h-100">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-3">
-                <span class="badge bg-success">Programming</span>
-                <div class="dropdown">
-                  <button class="btn btn-sm btn-link text-muted" data-bs-toggle="dropdown">
-                    <i class="fas fa-ellipsis-v"></i>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-users me-2"></i>Students</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-chart-bar me-2"></i>Analytics</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-archive me-2"></i>Archive</a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5>Advanced Python Programming</h5>
-              <p class="text-muted small mb-3">CS402 - Spring 2025</p>
-              
-              <div class="mb-3">
-                <div class="d-flex justify-content-between small mb-1">
-                  <span>Course Completion</span>
-                  <span>42% avg</span>
-                </div>
-                <div class="progress">
-                  <div class="progress-bar" style="width: 42%"></div>
-                </div>
-              </div>
-              
-              <div class="row text-center">
-                <div class="col-4">
-                  <h6 class="mb-0">18</h6>
-                  <small class="text-muted">Students</small>
-                </div>
-                <div class="col-4">
-                  <h6 class="mb-0">3</h6>
-                  <small class="text-muted">Modules</small>
-                </div>
-                <div class="col-4">
-                  <h6 class="mb-0">2</h6>
-                  <small class="text-muted">Assignments</small>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer bg-transparent">
-              <a href="#" class="btn btn-sm btn-primary me-2"><i class="fas fa-chalkboard me-1"></i> Teach</a>
-              <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye me-1"></i> Preview</a>
-              <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-cog me-1"></i> Settings</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Create New Course Card -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100 border-dashed">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center">
-              <div class="text-center py-4">
-                <i class="fas fa-plus-circle fa-3x text-muted mb-3"></i>
-                <h5 class="mb-1">Create New Course</h5>
-                <p class="text-muted small mb-3">Start building your course content</p>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">
-                  <i class="fas fa-plus me-2"></i> Create Course
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Archived Courses Section -->
-      <div class="d-flex justify-content-between align-items-center mb-4 mt-5">
-        <h4>Archived Courses</h4>
-        <a href="#" class="btn btn-sm btn-outline-secondary">View All</a>
-      </div>
-
-      <div class="row">
-        <!-- Archived Course 1 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card teacher-course-card h-100 opacity-75">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-3">
-                <span class="badge bg-secondary">Archived</span>
-                <div class="dropdown">
-                  <button class="btn btn-sm btn-link text-muted" data-bs-toggle="dropdown">
-                    <i class="fas fa-ellipsis-v"></i>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-users me-2"></i>Students</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-chart-bar me-2"></i>Analytics</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-success" href="#"><i class="fas fa-box-open me-2"></i>Restore</a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5>Introduction to Algorithms</h5>
-              <p class="text-muted small mb-3">CS301 - Fall 2024</p>
-              
-              <div class="mb-3">
-                <div class="d-flex justify-content-between small mb-1">
-                  <span>Course Completion</span>
-                  <span>92% avg</span>
-                </div>
-                <div class="progress">
-                  <div class="progress-bar" style="width: 92%"></div>
-                </div>
-              </div>
-              
-              <div class="row text-center">
-                <div class="col-4">
-                  <h6 class="mb-0">32</h6>
-                  <small class="text-muted">Students</small>
-                </div>
-                <div class="col-4">
-                  <h6 class="mb-0">6</h6>
-                  <small class="text-muted">Modules</small>
-                </div>
-                <div class="col-4">
-                  <h6 class="mb-0">4</h6>
-                  <small class="text-muted">Assignments</small>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer bg-transparent">
-              <button class="btn btn-sm btn-outline-secondary me-2" disabled><i class="fas fa-eye me-1"></i> Preview</button>
-              <button class="btn btn-sm btn-outline-success"><i class="fas fa-box-open me-1"></i> Restore</button>
-            </div>
-          </div>
+          
+          
         </div>
       </div>
     </div>
+
+    <!-- Active Courses -->
+    <div class="row">
+      {% for course in courses %}
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card teacher-course-card h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              {% if course.category %}
+              <span class="badge bg-primary">{{ course.category.name }}</span>
+              {% endif %}
+              
+            </div>
+            <h5>{{ course.title }}</h5>
+            <p class="text-muted small mb-3">{{ course.code }}</p>
+            <div class="mb-3">
+              <div class="d-flex justify-content-between small mb-1">
+              </div>
+              <div class="progress">
+                <div class="progress-bar" style="width: {{ course.progress|default:"0" }}%"></div>
+              </div>
+            </div>
+            <div class="row text-center">
+              <div class="col-4">
+                <h6 class="mb-0">{{ course.enrolled_students_count }}</h6>
+                <small class="text-muted">Students</small>
+              </div>
+              <div class="col-4">
+                <h6 class="mb-0">{{ course.module_count }}</h6>
+                <small class="text-muted">Modules</small>
+              </div>
+              <div class="col-4">
+                <h6 class="mb-0">{{ course.assignment_count }}</h6>
+                <small class="text-muted">Assignments</small>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-muted">No active courses found.</p>
+      {% endfor %}
+    </div>
+
+    
+    
   </div>
+</div>
+
 
   <!-- Create Course Modal -->
   <div class="modal fade" id="createCourseModal" tabindex="-1" aria-labelledby="createCourseModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+<form method="POST" enctype="multipart/form-data" action="{% url 'teacher_courses' %}">
+        {% csrf_token %}
         <div class="modal-header">
           <h5 class="modal-title" id="createCourseModalLabel">Create New Course</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="courseTitle" class="form-label">Course Title</label>
-                <input type="text" class="form-control" id="courseTitle" placeholder="e.g. Advanced Python Programming">
-              </div>
-              <div class="col-md-6">
-                <label for="courseCode" class="form-label">Course Code</label>
-                <input type="text" class="form-control" id="courseCode" placeholder="e.g. CS402">
-              </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="courseTitle" class="form-label">Course Title</label>
+              <input type="text" class="form-control" name="title" id="courseTitle" required>
             </div>
-            
-            <div class="mb-3">
-              <label for="courseDescription" class="form-label">Description</label>
-              <textarea class="form-control" id="courseDescription" rows="3" placeholder="Brief description of the course"></textarea>
+            <div class="col-md-6">
+              <label for="courseCode" class="form-label">Course Code</label>
+              <input type="text" class="form-control" name="code" id="courseCode" required>
             </div>
-            
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="courseCategory" class="form-label">Category</label>
-                <select class="form-select" id="courseCategory">
-                  <option selected>Select category</option>
-                  <option>Computer Science</option>
-                  <option>Mathematics</option>
-                  <option>Engineering</option>
-                  <option>Business</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label for="courseLevel" class="form-label">Level</label>
-                <select class="form-select" id="courseLevel">
-                  <option selected>Select level</option>
-                  <option>Beginner</option>
-                  <option>Intermediate</option>
-                  <option>Advanced</option>
-                </select>
-              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="courseDescription" class="form-label">Description</label>
+            <textarea class="form-control" name="description" id="courseDescription" rows="3" required></textarea>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="courseCategory" class="form-label">Category</label>
+              <select class="form-select" name="category" id="courseCategory" required>
+                <option value="" disabled selected>Select category</option>
+                {% for category in categories %}
+                  <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+              </select>
             </div>
-            
-            <div class="mb-3">
-              <label for="courseThumbnail" class="form-label">Course Thumbnail</label>
-              <input class="form-control" type="file" id="courseThumbnail">
+            <div class="col-md-6">
+              <label for="courseLevel" class="form-label">Level</label>
+              <select class="form-select" name="level" id="courseLevel" required>
+                <option value="" disabled selected>Select level</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
             </div>
-            
-            <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" id="draftCourse">
-              <label class="form-check-label" for="draftCourse">
-                Save as draft (won't be visible to students)
-              </label>
-            </div>
-          </form>
+          </div>
+
+          <div class="mb-3">
+            <label for="courseThumbnail" class="form-label">Course Thumbnail</label>
+            <input class="form-control" type="file" name="thumbnail" id="courseThumbnail" required>
+          </div>
+
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="is_draft" id="draftCourse">
+            <label class="form-check-label" for="draftCourse">
+              Save as draft (won't be visible to students)
+            </label>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Create Course</button>
+          <button type="submit" class="btn btn-primary">Create Course</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
+</div>
 
-   <!-- Footer -->
-  <footer class="bg-dark text-white-50 py-4">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6">
-          <p class="mb-0">&copy; 2025 SmartLearn LMS. All rights reserved.</p>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <p class="mb-0">Teacher Dashboard v2.1</p>
-        </div>
-      </div>
-    </div>
-  </footer>
 
+  
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   

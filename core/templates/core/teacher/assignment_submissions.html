@@ -286,136 +286,101 @@
 </nav>
 
     <div class="main-content">
-      <div class="container-fluid">
-        <!-- Top Bar -->
-        <div class="top-bar d-flex justify-content-between align-items-center mb-4">
-          <h4>Discussions</h4>
-          <div class="d-flex">
-            <form method="get" class="input-group me-3" style="width: 300px" role="search">
-              <input type="text" name="q" value="{{ request.GET.q|default_if_none:'' }}" class="form-control" placeholder="Search discussions..." />
-              <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-            </form>
-          </div>
-        </div>
+  <div class="container-fluid">
+    <!-- Top Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="fw-bold">Submissions for: {{ assignment.title }}</h4>
+      <a href="{% url 'teacher_assignments' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Back to Assignments
+      </a>
+    </div>
 
-        <!-- Tabs -->
-       
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-3" id="submissionTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="submitted-tab" data-bs-toggle="tab" data-bs-target="#submitted" type="button" role="tab">
+          Submitted ({{ submitted_students.count }})
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="not-submitted-tab" data-bs-toggle="tab" data-bs-target="#not-submitted" type="button" role="tab">
+          Not Submitted ({{ not_submitted_students.count }})
+        </button>
+      </li>
+    </ul>
 
-        <div class="row">
-          <!-- Discussions -->
-          <div class="col-lg-8">
-            {% if posts %}
-              {% for post in posts %}
-                <div class="card discussion-card mb-3 {% if post.replies.count == 0 %}unread{% endif %}">
-                  <div class="card-body">
-                    <div class="d-flex">
-                      <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between align-items-start mb-1">
-                          <h5 class="mb-0">{{ post.title }}</h5>
-                          {% if post.replies.count > 0 %}
-                            <span class="badge bg-primary">New Replies</span>
-                          {% else %}
-                            <span class="badge bg-secondary">No New</span>
-                          {% endif %}
-                        </div>
-                        <p class="mb-2">{{ post.content|truncatewords:20 }}</p>
-                        <div class="d-flex justify-content-between flex-wrap">
-                          <div>
-                            <small class="text-muted me-3"><i class="fas fa-user me-1"></i>{{ post.creator.get_full_name }}</small>
-                            <small class="text-muted me-3">
-                              <i class="fas fa-book me-1"></i>{% if post.course %}
-                                {{ post.course.title }}
-                              {% else %}
-                                No Course
-                              {% endif %}
-                            </small>
-                            <small class="text-muted"><i class="fas fa-clock me-1"></i>{{ post.created_at|naturaltime }}</small>
-                          </div>
-                          <div>
-                            <small class="text-muted me-2"><i class="fas fa-comment me-1"></i>{{ post.replies.count }} replies</small>
-                            <small class="text-muted"><i class="fas fa-eye me-1"></i>{{ post.view_count }}</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              {% endfor %}
-            {% else %}
-              <div class="alert alert-info">No discussions found.</div>
-            {% endif %}
-
-            {% if is_paginated %}
-              <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                  {% if page_obj.has_previous %}
-                    <li class="page-item">
-                      <a class="page-link"
-                        href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}
-                          &q={{ request.GET.q }}
-                        {% endif %}">
-                        &laquo;
-                      </a>
-                    </li>
-                  {% else %}
-                    <li class="page-item disabled">
-                      <span class="page-link">&laquo;</span>
-                    </li>
-                  {% endif %}
-                  {% for num in paginator.page_range %}
-                    {% if num >= page_obj.number|add:'-3' and num <= page_obj.number|add:'3' %}
-                      <li class="page-item {% if page_obj.number == num %}active{% endif %}">
-                        <a class="page-link"
-                          href="?page={{ num }}{% if request.GET.q %}
-                            &q={{ request.GET.q }}
-                          {% endif %}">
-                          {{ num }}
+    <!-- Tab Content -->
+    <div class="tab-content" id="submissionTabContent">
+      <!-- Submitted Tab -->
+      <div class="tab-pane fade show active" id="submitted" role="tabpanel">
+        {% if submitted_students %}
+          <div class="table-responsive">
+            <table class="table table-striped align-middle">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Submitted At</th>
+                  <th>File</th>
+                  <th>Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for submission in submissions %}
+                  <tr>
+                    <td>{{ submission.student.student_name|default:submission.student.email }}</td>
+                    <td>{{ submission.student.email }}</td>
+                    <td>{{ submission.submitted_at|date:"d M Y, H:i" }}</td>
+                    <td>
+                      {% if submission.file %}
+                        <a href="{{ submission.file.url }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                          <i class="fas fa-download me-1"></i>Download
                         </a>
-                      </li>
-                    {% endif %}
-                  {% endfor %}
-                  {% if page_obj.has_next %}
-                    <li class="page-item">
-                      <a class="page-link"
-                        href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}
-                          &q={{ request.GET.q }}
-                        {% endif %}">
-                        &raquo;
-                      </a>
-                    </li>
-                  {% else %}
-                    <li class="page-item disabled">
-                      <span class="page-link">&raquo;</span>
-                    </li>
-                  {% endif %}
-                </ul>
-              </nav>
-            {% endif %}
+                      {% else %}
+                        <span class="text-muted">No File</span>
+                      {% endif %}
+                    </td>
+                    <td>{{ submission.grade|default:"-" }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
           </div>
+        {% else %}
+          <div class="alert alert-info">No submissions yet.</div>
+        {% endif %}
+      </div>
 
-          <!-- Sidebar -->
-          <div class="col-lg-4">
-            <div class="card mb-4">
-              <div class="card-header">
-                <h5 class="mb-0">Popular Topics</h5>
-              </div>
-              <div class="card-body">
-                <div class="list-group list-group-flush">
-                  {% for course in courses %}
-                    <a href="{% url 'student_discussions' %}?course={{ course.id }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                      <span>{{ course.title }}</span>
-                      <span class="badge bg-primary rounded-pill">{{ course.discussions.count }}</span>
-                    </a>
-                  {% empty %}
-                    <div class="text-muted px-3">No courses found.</div>
-                  {% endfor %}
-                </div>
-              </div>
-            </div>
+      <!-- Not Submitted Tab -->
+      <div class="tab-pane fade" id="not-submitted" role="tabpanel">
+        {% if not_submitted_students %}
+          <div class="table-responsive">
+            <table class="table table-striped align-middle">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for student in not_submitted_students %}
+                  <tr>
+                    <td>{{ student.student_name|default:student.email }}</td>
+                    <td>{{ student.email }}</td>
+                    <td><span class="badge bg-warning text-dark">Pending</span></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
           </div>
-        </div>
+        {% else %}
+          <div class="alert alert-success">All students have submitted.</div>
+        {% endif %}
       </div>
     </div>
+  </div>
+</div>
 
    
 

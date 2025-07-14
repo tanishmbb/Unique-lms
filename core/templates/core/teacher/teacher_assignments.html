@@ -4,15 +4,18 @@
 
 <head>
   <!-- Same head content as dashboard -->
-  <title>SmartLearn | Assignments</title><link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <title>SmartLearn | Assignments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap"
+    rel="stylesheet" />
 
   <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
   <style>
     :root {
@@ -24,19 +27,24 @@
       --success-color: #4bb543;
       --warning-color: #f8961e;
     }
-    
+
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #f5f7fa;
       color: #333;
       overflow-x: hidden;
     }
-    
-    h1, h2, h3, h4, h5, h6 {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
     }
-    
+
     .navbar {
       background: white;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -44,9 +52,10 @@
       width: 100%;
       top: 0;
       z-index: 1000;
-      padding-left: 270px; /* Account for sidebar */
+      padding-left: 270px;
+      /* Account for sidebar */
     }
-    
+
     .sidebar {
       background: var(--dark-color);
       min-height: 100vh;
@@ -59,13 +68,13 @@
       z-index: 1001;
       overflow-y: auto;
     }
-    
+
     .sidebar-header {
       padding: 20px;
       background: rgba(0, 0, 0, 0.2);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
+
     .sidebar .nav-link {
       color: rgba(255, 255, 255, 0.8);
       padding: 12px 20px;
@@ -73,26 +82,27 @@
       border-radius: 5px;
       transition: all 0.3s;
     }
-    
-    .sidebar .nav-link:hover, 
+
+    .sidebar .nav-link:hover,
     .sidebar .nav-link.active {
       background: var(--primary-color);
       color: white;
     }
-    
+
     .sidebar .nav-link i {
       margin-right: 10px;
       width: 20px;
       text-align: center;
     }
-    
+
     .main-content {
       margin-left: 250px;
       padding: 80px 20px 20px;
       transition: all 0.3s;
       min-height: 100vh;
+      padding-bottom: 100px;
     }
-    
+
     .top-bar {
       background: white;
       padding: 15px 25px;
@@ -103,7 +113,7 @@
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .card {
       border: none;
       border-radius: 10px;
@@ -111,11 +121,11 @@
       margin-bottom: 20px;
       transition: transform 0.3s;
     }
-    
+
     .card:hover {
       transform: translateY(-5px);
     }
-    
+
     .card-header {
       background: white;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -123,41 +133,41 @@
       padding: 15px 20px;
       border-radius: 10px 10px 0 0 !important;
     }
-    
+
     .course-card {
       transition: all 0.3s;
       border: 1px solid rgba(0, 0, 0, 0.05);
     }
-    
+
     .course-card:hover {
       border-color: var(--primary-color);
     }
-    
+
     .course-progress {
       height: 6px;
       border-radius: 3px;
     }
-    
+
     .badge-primary {
       background: var(--primary-color);
     }
-    
+
     .btn-primary {
       background: var(--primary-color);
       border: none;
     }
-    
+
     .btn-primary:hover {
       background: var(--secondary-color);
     }
-    
+
     .user-avatar {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       object-fit: cover;
     }
-    
+
     .notification-dot {
       position: absolute;
       top: 5px;
@@ -167,538 +177,655 @@
       border-radius: 50%;
       background: var(--warning-color);
     }
-    
+
     @media (max-width: 992px) {
       .navbar {
         padding-left: 20px;
       }
-      
+
       .sidebar {
         transform: translateX(-100%);
       }
-      
+
       .sidebar.active {
         transform: translateX(0);
       }
-      
+
       .main-content {
         margin-left: 0;
       }
     }
-    
-    /* Ensure content doesn't get hidden behind footer */
-    .main-content {
-      padding-bottom: 100px;
-    }
-    
+
     footer {
       position: relative;
       margin-top: -80px;
     }
+    .modal-backdrop {
+  z-index: 1040 !important;
+}
+
+
+
   </style>
 </head>
 
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="d-flex align-items-center">
-        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle me-3" width="50" height="50">
-        <div>
-          <h6 class="mb-0">Sarah Johnson</h6>
-          <small class="text-muted">Computer Science</small>
-        </div>
-      </div>
-    </div>
+<div class="sidebar" id="sidebar">
+  
     
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link active" href="{% url 'teacher_dashboard' %}">
-          <i class="fas fa-tachometer-alt"></i> Dashboard
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_courses' %}">
-          <i class="fas fa-book"></i> My Courses
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_assignments' %}">
-          <i class="fas fa-tasks"></i> Assignments
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{ % url 'teacher_schedule' %}">
-          <i class="fas fa-calendar-alt"></i> Schedule
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_student' %}">
-          <i class="fas fa-users"></i> Students
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_progress' %}">
-          <i class="fas fa-chart-bar"></i> Analytics
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_discussion' %}">
-          <i class="fas fa-comments"></i> Discussions
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_library' %}">
-          <i class="fas fa-file-upload"></i> Content Library
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teacher_liveclasses' %}">
-          <i class="fas fa-video"></i> Live Classes
-        </a>
-      </li>
-      
-      <li class="nav-item mt-3">
-        <a class="nav-link" href="{% url 'teacher_settings' %}">
-          <i class="fas fa-cog"></i> Settings
-        </a>
-      </li>
-      <li class="nav-item mt-3">
-        <a class="nav-link" href="signup.html">
-          <i class="fas fa-sign-out-alt"></i> Logout
-        </a>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-      <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
-      </button>
-      
-      <a class="navbar-brand ms-3" href="#">
-        <i class="fas fa-chalkboard-teacher text-primary me-2"></i>
-        <span class="fw-bold">Unique LMS</span> Teacher
+  
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link {% if request.path == '/teacher/dashboard/' %}active{% endif %}" href="{% url 'teacher_dashboard' %}">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
       </a>
-      
-      <div class="d-flex align-items-center">
-        <div class="dropdown me-3">
-          <a href="#" class="dropdown-toggle text-dark position-relative" id="notificationsDropdown" data-bs-toggle="dropdown">
-            <i class="fas fa-bell"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              5
-            </span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-            <h6 class="dropdown-header">Notifications</h6>
-            <a class="dropdown-item" href="#"><i class="fas fa-file-upload text-primary me-2"></i> 3 new assignment submissions</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-question-circle text-warning me-2"></i> 2 student questions</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-calendar-check text-info me-2"></i> Live class starting soon</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-exclamation-triangle text-danger me-2"></i> System maintenance alert</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-center" href="#">View All</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_courses' %}">
+        <i class="fas fa-book"></i> My Courses
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_assignments' %}">
+        <i class="fas fa-tasks"></i> Assignments
+      </a>
+    </li>
+  
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_students' %}">
+        <i class="fas fa-users"></i> Students
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_discussions' %}">
+        <i class="fas fa-comments"></i> Discussions
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'teacher_library' %}">
+        <i class="fas fa-file-upload"></i> Content Library
+      </a>
+    </li>
+    
+    <li class="nav-item mt-3">
+      <a class="nav-link" href="{% url 'logout' %}">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </li>
+  </ul>
+</div>
+
+{% load widget_tweaks %}
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <a class="navbar-brand ms-3" href="{% url 'teacher_dashboard' %}">
+      <i class="fas fa-chalkboard-teacher text-primary me-2"></i>
+      <span class="fw-bold">Unique LMS </span>
+    </a>
+
+     
+
+      <!-- Profile Dropdown -->
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle d-flex align-items-center text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown">
+          <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+            <i class="fas fa-user"></i>
           </div>
-        </div>
-        
-        <div class="dropdown">
-          <a href="#" class="dropdown-toggle d-flex align-items-center text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle me-2" width="32" height="32">
-            <span class="d-none d-lg-inline">Dr. Chen</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{url 'signup'}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
-          </div>
+          <span class="d-none d-lg-inline">{{ request.user.get_full_name }}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a>
+          <a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Main Content -->
-  <div class="main-content" id="mainContent">
-    <div class="container-fluid">
-      <!-- Page Header -->
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Assignments</h2>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAssignmentModal">
-          <i class="fas fa-plus me-2"></i> Create Assignment
+{% load widget_tweaks %}
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <a class="navbar-brand ms-3" href="{% url 'teacher_dashboard' %}">
+      <i class="fas fa-chalkboard-teacher text-primary me-2"></i>
+      <span class="fw-bold">Unique LMS 
+    </a>
+
+     
+
+      <!-- Profile Dropdown -->
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle d-flex align-items-center text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown">
+          {% if request.user.profile.image %}
+            <img src="{{ request.user.profile.image.url }}" class="rounded-circle me-2" width="32" height="32" />
+          {% else %}
+            <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+              <i class="fas fa-user"></i>
+            </div>
+          {% endif %}
+          <span class="d-none d-lg-inline">{{ request.user.get_full_name }}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a>
+          <a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+{% load assignment_filter %}
+{% load static %}
+<div class="main-content" id="mainContent">
+  <div class="container-fluid">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Assignments</h2>
+      <!-- Button triggers Create Modal -->
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAssignmentModal">
+        <i class="fas fa-plus me-2"></i> Create Assignment
+      </button>
+    </div>
+
+    <!-- Filter Form -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <form method="get" id="filterForm" class="row g-3">
+          <div class="col-md-3">
+            <select class="form-select" name="course" onchange="this.form.submit()" aria-label="Filter by course">
+              <option value="">All Courses</option>
+              {% for course in courses %}
+                <option value="{{ course.id }}" {% if course.id|stringformat:"s" == selected_course|stringformat:"s" %}selected{% endif %}>
+                  {{ course.title }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-6">
+            
+          </div>
+          
+        </form>
+      </div>
+    </div>
+
+    <!-- Tabs for Active and Completed -->
+    <ul class="nav nav-tabs mb-4" id="assignmentsTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active" type="button" role="tab" aria-controls="active" aria-selected="true">
+          Active Assignments ({{ active_assignments.count }})
         </button>
+      </li>
+      
+    </ul>
+
+    <div class="tab-content" id="assignmentsTabContent">
+
+      <!-- Active Assignments Tab -->
+      <div class="tab-pane fade show active" id="active" role="tabpanel" aria-labelledby="active-tab">
+        {% if active_assignments %}
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Assignment</th>
+                  <th>Course</th>
+                  <th>Due Date</th>
+                  <th>Status</th>
+                  <th style="width: 110px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for assignment in active_assignments %}
+                  <tr>
+                    <td>
+                      <h6 class="mb-1">{{ assignment.title }}</h6>
+                      <small class="text-muted">{{ assignment.description|truncatewords:10 }}</small>
+                    </td>
+                    <td>{{ assignment.course.title }}</td>
+                    <td>{{ assignment.due_date|date:"M d, Y H:i" }}</td>
+                    <td>
+                      <span class="badge
+                        {% if assignment.status == 'active' %}bg-primary
+                        {% elif assignment.status == 'draft' %}bg-secondary
+                        {% elif assignment.status == 'completed' %}bg-success
+                        {% else %}bg-light text-dark
+                        {% endif %}">
+                        {{ assignment.get_status_display }}
+                      </span>
+                    </td>
+                    <td>
+                      <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <!-- Edit -->
+                          <li>
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAssignmentModal{{ assignment.id }}">
+                              <i class="fas fa-edit me-2"></i>Edit
+                            </a>
+                          </li>
+                          <!-- Delete -->
+                          <li>
+                            <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteAssignmentModal{{ assignment.id }}">
+                              <i class="fas fa-trash me-2"></i>Delete
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <p class="text-center my-4 text-muted">No active assignments found.</p>
+        {% endif %}
       </div>
 
-      <!-- Assignment Filter -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-3">
-              <select class="form-select">
-                <option selected>All Courses</option>
-                <option>Machine Learning Fundamentals</option>
-                <option>Advanced Python Programming</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <select class="form-select">
-                <option selected>All Status</option>
-                <option>Active</option>
-                <option>Draft</option>
-                <option>Completed</option>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search assignments...">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
+      <!-- Completed Assignments Tab -->
+      <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+        {% if completed_assignments %}
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Assignment</th>
+                  <th>Course</th>
+                  <th>Due Date</th>
+                  <th>Status</th>
+                  <th style="width: 110px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for assignment in completed_assignments %}
+                  <tr>
+                    <td>
+                      <h6 class="mb-1">{{ assignment.title }}</h6>
+                      <small class="text-muted">{{ assignment.description|truncatewords:10 }}</small>
+                    </td>
+                    <td>{{ assignment.course.title }}</td>
+                    <td>{{ assignment.due_date|date:"M d, Y H:i" }}</td>
+                    <td>
+                      <span class="badge
+                        {% if assignment.status == 'active' %}bg-primary
+                        {% elif assignment.status == 'draft' %}bg-secondary
+                        {% elif assignment.status == 'completed' %}bg-success
+                        {% else %}bg-light text-dark
+                        {% endif %}">
+                        {{ assignment.get_status_display }}
+                      </span>
+                    </td>
+                    <td>
+                      <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <!-- Edit -->
+                          <li>
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAssignmentModal{{ assignment.id }}">
+                              <i class="fas fa-edit me-2"></i>Edit
+                            </a>
+                          </li>
+                          <!-- Delete -->
+                          <li>
+                            <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteAssignmentModal{{ assignment.id }}">
+                              <i class="fas fa-trash me-2"></i>Delete
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
           </div>
-        </div>
-      </div>
-
-      <!-- Assignments Tabs -->
-      <ul class="nav nav-tabs mb-4" id="assignmentsTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active" type="button" role="tab">Active (4)</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="grading-tab" data-bs-toggle="tab" data-bs-target="#grading" type="button" role="tab">Needs Grading (3)</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button" role="tab">Completed (12)</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="drafts-tab" data-bs-toggle="tab" data-bs-target="#drafts" type="button" role="tab">Drafts (2)</button>
-        </li>
-      </ul>
-
-      <div class="tab-content" id="assignmentsTabContent">
-        <!-- Active Assignments Tab -->
-        <div class="tab-pane fade show active" id="active" role="tabpanel">
-          <div class="card">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Assignment</th>
-                      <th>Course</th>
-                      <th>Due Date</th>
-                      <th>Submissions</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <h6 class="mb-0">ML Project 1</h6>
-                        <small class="text-muted">Classification problem</small>
-                      </td>
-                      <td>Machine Learning</td>
-                      <td>Jul 15, 2025</td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <div class="progress flex-grow-1 me-2" style="height: 6px;">
-                            <div class="progress-bar" style="width: 65%"></div>
-                          </div>
-                          <small>13/20</small>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-primary">Active</span></td>
-                      <td>
-                        <div class="dropdown">
-                          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fas fa-ellipsis-h"></i>
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>View</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-users me-2"></i>Submissions</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i>Delete</a></li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td>
-                        <h6 class="mb-0">Python Quiz 2</h6>
-                        <small class="text-muted">Functions and OOP</small>
-                      </td>
-                      <td>Advanced Python</td>
-                      <td>Jul 18, 2025</td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <div class="progress flex-grow-1 me-2" style="height: 6px;">
-                            <div class="progress-bar" style="width: 40%"></div>
-                          </div>
-                          <small>7/18</small>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-primary">Active</span></td>
-                      <td>
-                        <div class="dropdown">
-                          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fas fa-ellipsis-h"></i>
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>View</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-users me-2"></i>Submissions</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i>Delete</a></li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Needs Grading Tab -->
-        <div class="tab-pane fade" id="grading" role="tabpanel">
-          <div class="card">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Assignment</th>
-                      <th>Course</th>
-                      <th>Due Date</th>
-                      <th>Submitted</th>
-                      <th>Graded</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <h6 class="mb-0">Python Quiz 1</h6>
-                        <small class="text-muted">Basic syntax</small>
-                      </td>
-                      <td>Advanced Python</td>
-                      <td>Jun 30, 2025</td>
-                      <td>18/18</td>
-                      <td>5/18</td>
-                      <td>
-                        <a href="#" class="btn btn-sm btn-primary">Grade Now</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Completed Tab -->
-        <div class="tab-pane fade" id="completed" role="tabpanel">
-          <div class="alert alert-info">
-            <i class="fas fa-info-circle me-2"></i> Showing completed assignments from the last 6 months
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Assignment</th>
-                      <th>Course</th>
-                      <th>Due Date</th>
-                      <th>Submissions</th>
-                      <th>Avg. Grade</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <h6 class="mb-0">Intro to ML</h6>
-                        <small class="text-muted">Basic concepts</small>
-                      </td>
-                      <td>Machine Learning</td>
-                      <td>Jun 15, 2025</td>
-                      <td>20/20</td>
-                      <td>87%</td>
-                      <td>
-                        <div class="dropdown">
-                          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fas fa-ellipsis-h"></i>
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>View</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-chart-bar me-2"></i>Statistics</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Export Grades</a></li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Drafts Tab -->
-        <div class="tab-pane fade" id="drafts" role="tabpanel">
-          <div class="card">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Assignment</th>
-                      <th>Course</th>
-                      <th>Created</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <h6 class="mb-0">Final Project</h6>
-                        <small class="text-muted">Capstone project</small>
-                      </td>
-                      <td>Machine Learning</td>
-                      <td>Jul 5, 2025</td>
-                      <td><span class="badge bg-secondary">Draft</span></td>
-                      <td>
-                        <div class="dropdown">
-                          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fas fa-ellipsis-h"></i>
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Edit</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-check me-2"></i>Publish</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i>Delete</a></li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% else %}
+          <p class="text-center my-4 text-muted">No completed assignments found.</p>
+        {% endif %}
       </div>
     </div>
-  </div>
 
-  <!-- Create Assignment Modal -->
-  <div class="modal fade" id="createAssignmentModal" tabindex="-1" aria-labelledby="createAssignmentModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="createAssignmentModalLabel">Create New Assignment</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Modals -->
+
+    <!-- Create Assignment Modal -->
+    <!-- Create Assignment Modal -->
+<div class="modal fade" id="createAssignmentModal" tabindex="-1" aria-labelledby="createAssignmentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form method="post" enctype="multipart/form-data" action="" class="modal-content needs-validation" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="create_assignment" value="1" />
+      <div class="modal-header">
+        <h5 class="modal-title" id="createAssignmentModalLabel">Create New Assignment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% if create_form.non_field_errors %}
+          <div class="alert alert-danger">{{ create_form.non_field_errors }}</div>
+        {% endif %}
+        <div class="mb-3">
+          {{ create_form.title.label_tag }} 
+          {{ create_form.title }}
+          {% if create_form.title.errors %}
+            <div class="invalid-feedback d-block">{{ create_form.title.errors }}</div>
+          {% endif %}
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="assignmentTitle" class="form-label">Assignment Title</label>
-                <input type="text" class="form-control" id="assignmentTitle" placeholder="e.g. Python Quiz 2">
-              </div>
-              <div class="col-md-6">
-                <label for="assignmentCourse" class="form-label">Course</label>
-                <select class="form-select" id="assignmentCourse">
-                  <option selected>Select course</option>
-                  <option>Machine Learning Fundamentals</option>
-                  <option>Advanced Python Programming</option>
-                </select>
-              </div>
-            </div>
-            
+        <div class="mb-3">
+          {{ create_form.course.label_tag }} 
+          {{ create_form.course }}
+          {% if create_form.course.errors %}
+            <div class="invalid-feedback d-block">{{ create_form.course.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ create_form.description.label_tag }} 
+          {{ create_form.description }}
+          {% if create_form.description.errors %}
+            <div class="invalid-feedback d-block">{{ create_form.description.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ create_form.due_date.label_tag }} 
+          {{ create_form.due_date }}
+          {% if create_form.due_date.errors %}
+            <div class="invalid-feedback d-block">{{ create_form.due_date.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ create_form.max_points.label_tag }} 
+          {{ create_form.max_points }}
+          {% if create_form.max_points.errors %}
+            <div class="invalid-feedback d-block">{{ create_form.max_points.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ create_form.attachment.label_tag }} 
+          {{ create_form.attachment }}
+          {% if create_form.attachment.errors %}
+            <div class="invalid-feedback d-block">{{ create_form.attachment.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="form-check mb-3">
+          {{ create_form.is_draft }}
+          {{ create_form.is_draft.label_tag }}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Assignment</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+    <!-- Edit Assignment Modals -->
+   {% for assignment in active_assignments %}
+<div class="modal fade" id="editAssignmentModal{{ assignment.id }}" tabindex="-1" aria-labelledby="editAssignmentModalLabel{{ assignment.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form method="post" enctype="multipart/form-data" action="" class="modal-content needs-validation" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="edit_assignment_id" value="{{ assignment.id }}" />
+      <div class="modal-header">
+        <h5 class="modal-title" id="editAssignmentModalLabel{{ assignment.id }}">Edit Assignment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% with edit_forms|get_item:assignment.id as form %}
+          {% if form %}
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+            {% endif %}
             <div class="mb-3">
-              <label for="assignmentDescription" class="form-label">Description</label>
-              <textarea class="form-control" id="assignmentDescription" rows="3" placeholder="Assignment instructions and details"></textarea>
+              {{ form.title.label_tag }} 
+              {{ form.title }}
+              {% if form.title.errors %}
+                <div class="invalid-feedback d-block">{{ form.title.errors }}</div>
+              {% endif %}
             </div>
-            
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="dueDate" class="form-label">Due Date</label>
-                <input type="datetime-local" class="form-control" id="dueDate">
-              </div>
-              <div class="col-md-6">
-                <label for="maxPoints" class="form-label">Maximum Points</label>
-                <input type="number" class="form-control" id="maxPoints" value="100">
-              </div>
-            </div>
-            
             <div class="mb-3">
-              <label for="assignmentFiles" class="form-label">Attach Files (Optional)</label>
-              <input class="form-control" type="file" id="assignmentFiles" multiple>
+              {{ form.course.label_tag }} 
+              {{ form.course }}
+              {% if form.course.errors %}
+                <div class="invalid-feedback d-block">{{ form.course.errors }}</div>
+              {% endif %}
             </div>
-            
+            <div class="mb-3">
+              {{ form.description.label_tag }} 
+              {{ form.description }}
+              {% if form.description.errors %}
+                <div class="invalid-feedback d-block">{{ form.description.errors }}</div>
+              {% endif %}
+            </div>
+            <div class="mb-3">
+              {{ form.due_date.label_tag }} 
+              {{ form.due_date }}
+              {% if form.due_date.errors %}
+                <div class="invalid-feedback d-block">{{ form.due_date.errors }}</div>
+              {% endif %}
+            </div>
+            <div class="mb-3">
+              {{ form.max_points.label_tag }} 
+              {{ form.max_points }}
+              {% if form.max_points.errors %}
+                <div class="invalid-feedback d-block">{{ form.max_points.errors }}</div>
+              {% endif %}
+            </div>
+            <div class="mb-3">
+              {{ form.attachment.label_tag }} 
+              {{ form.attachment }}
+              {% if assignment.attachment %}
+                <small>Current file: <a href="{{ assignment.attachment.url }}" target="_blank">{{ assignment.attachment.name|basename }}</a></small>
+              {% endif %}
+              {% if form.attachment.errors %}
+                <div class="invalid-feedback d-block">{{ form.attachment.errors }}</div>
+              {% endif %}
+            </div>
             <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" id="draftAssignment">
-              <label class="form-check-label" for="draftAssignment">
-                Save as draft (won't be visible to students)
-              </label>
+              {{ form.is_draft }}
+              {{ form.is_draft.label_tag }}
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Create Assignment</button>
-        </div>
+          {% else %}
+            {# No form bound for this assignment, render normally #}
+            <!-- You can fallback to your old manual inputs if needed -->
+          {% endif %}
+        {% endwith %}
       </div>
-    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+    </form>
   </div>
-<!-- Footer -->
-  <footer class="bg-dark text-white-50 py-4">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6">
-          <p class="mb-0">&copy; 2025 SmartLearn LMS. All rights reserved.</p>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <p class="mb-0">Made with <i class="fas fa-heart text-danger"></i> by Tanish</p>
-        </div>
+</div>
+{% endfor %}
+
+
+    {% for assignment in completed_assignments %}
+    <!-- Edit modals for completed assignments also -->
+    <div class="modal fade" id="editAssignmentModal{{ assignment.id }}" tabindex="-1" aria-labelledby="editAssignmentModalLabel{{ assignment.id }}" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <form method="post" enctype="multipart/form-data" action="{% url 'assignment_edit' assignment.id %}" class="modal-content needs-validation" novalidate>
+          {% csrf_token %}
+          <div class="modal-header">
+            <h5 class="modal-title" id="editAssignmentModalLabel{{ assignment.id }}">Edit Assignment</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Same form fields as above, populated with assignment data -->
+            <div class="mb-3">
+              <label for="title{{ assignment.id }}" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title{{ assignment.id }}" name="title" value="{{ assignment.title }}" required>
+              <div class="invalid-feedback">Please enter a title.</div>
+            </div>
+            <div class="mb-3">
+              <label for="course{{ assignment.id }}" class="form-label">Course</label>
+              <select id="course{{ assignment.id }}" name="course" class="form-select" required>
+                {% for course in courses %}
+                  <option value="{{ course.id }}" {% if course.id == assignment.course.id %}selected{% endif %}>{{ course.title }}</option>
+                {% endfor %}
+              </select>
+              <div class="invalid-feedback">Please select a course.</div>
+            </div>
+            <div class="mb-3">
+              <label for="description{{ assignment.id }}" class="form-label">Description</label>
+              <textarea class="form-control" id="description{{ assignment.id }}" name="description" rows="3">{{ assignment.description }}</textarea>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="due_date{{ assignment.id }}" class="form-label">Due Date</label>
+                <input type="datetime-local" id="due_date{{ assignment.id }}" name="due_date" class="form-control" value="{{ assignment.due_date|date:'Y-m-d\\TH:i' }}" required>
+                <div class="invalid-feedback">Please select a due date.</div>
+              </div>
+              <div class="col-md-6">
+                <label for="max_points{{ assignment.id }}" class="form-label">Max Points</label>
+                <input type="number" id="max_points{{ assignment.id }}" name="max_points" class="form-control" value="{{ assignment.max_points }}" min="1" required>
+                <div class="invalid-feedback">Please enter maximum points.</div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="attachment{{ assignment.id }}" class="form-label">Attachment (optional)</label>
+              <input type="file" id="attachment{{ assignment.id }}" name="attachment" class="form-control">
+              {% if assignment.attachment %}
+                <small>Current file: <a href="{{ assignment.attachment.url }}" target="_blank">{{ assignment.attachment.name|basename }}</a></small>
+              {% endif %}
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="is_draft{{ assignment.id }}" name="is_draft" {% if assignment.status == 'draft' %}checked{% endif %}>
+              <label class="form-check-label" for="is_draft{{ assignment.id }}">Save as draft</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
       </div>
     </div>
-  </footer>
+    {% endfor %}
+
+    <!-- Delete Assignment Modals -->
+   {% for assignment in active_assignments %}
+<div class="modal fade" id="deleteAssignmentModal{{ assignment.id }}" tabindex="-1" aria-labelledby="deleteAssignmentModalLabel{{ assignment.id }}" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="post" action="" class="modal-content">
+      {% csrf_token %}
+      <input type="hidden" name="delete_assignment_id" value="{{ assignment.id }}" />
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteAssignmentModalLabel{{ assignment.id }}">Delete Assignment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete the assignment "<strong>{{ assignment.title }}</strong>"?</p>
+        <p class="text-danger"><small>This action cannot be undone.</small></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endfor %}
+
+
+    {% for assignment in completed_assignments %}
+    <div class="modal fade" id="deleteAssignmentModal{{ assignment.id }}" tabindex="-1" aria-labelledby="deleteAssignmentModalLabel{{ assignment.id }}" aria-hidden="true">
+      <div class="modal-dialog">
+        <form method="post" action="{% url 'assignment_delete' assignment.id %}" class="modal-content">
+          {% csrf_token %}
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteAssignmentModalLabel{{ assignment.id }}">Delete Assignment</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete the assignment "<strong>{{ assignment.title }}</strong>"?</p>
+            <p class="text-danger"><small>This action cannot be undone.</small></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+<!-- Bootstrap client-side validation script -->
+<script>
+  (() => {
+    'use strict'
+    // Fetch all forms we want to apply validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>
+
+
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
+
   <script>
+    // Bootstrap form validation (optional)
+    (() => {
+      'use strict'
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+
     // Toggle sidebar on mobile
-    document.getElementById('sidebarToggle').addEventListener('click', function() {
+    document.getElementById('sidebarToggle').addEventListener('click', function () {
       document.getElementById('sidebar').classList.toggle('active');
     });
-    
+
     // Close sidebar when clicking outside on mobile
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
       const sidebar = document.getElementById('sidebar');
       const sidebarToggle = document.getElementById('sidebarToggle');
-      
-      if (window.innerWidth < 992 && 
-          !sidebar.contains(event.target) && 
-          !sidebarToggle.contains(event.target) &&
-          sidebar.classList.contains('active')) {
+
+      if (window.innerWidth < 992 &&
+        !sidebar.contains(event.target) &&
+        !sidebarToggle.contains(event.target) &&
+        sidebar.classList.contains('active')) {
         sidebar.classList.remove('active');
       }
     });
